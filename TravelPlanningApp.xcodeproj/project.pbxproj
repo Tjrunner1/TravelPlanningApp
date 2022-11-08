@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED39291AB6D800DD99F7 /* TravelPlanningAppApp.swift */; };
-		1B08ED3C291AB6D800DD99F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED3B291AB6D800DD99F7 /* ContentView.swift */; };
 		1B08ED3E291AB6D900DD99F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B08ED3D291AB6D900DD99F7 /* Assets.xcassets */; };
 		1B08ED41291AB6D900DD99F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B08ED40291AB6D900DD99F7 /* Preview Assets.xcassets */; };
+		1B08ED4B291ABE0600DD99F7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */; };
+		1B08ED4D291ABE1E00DD99F7 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4C291ABE1E00DD99F7 /* AddActivityView.swift */; };
+		1B08ED4F291ABE3300DD99F7 /* SelectTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4E291ABE3300DD99F7 /* SelectTripView.swift */; };
+		1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED50291AC35E00DD99F7 /* ActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B08ED36291AB6D800DD99F7 /* TravelPlanningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlanningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B08ED39291AB6D800DD99F7 /* TravelPlanningAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelPlanningAppApp.swift; sourceTree = "<group>"; };
-		1B08ED3B291AB6D800DD99F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B08ED3D291AB6D900DD99F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B08ED40291AB6D900DD99F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		1B08ED4C291ABE1E00DD99F7 /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
+		1B08ED4E291ABE3300DD99F7 /* SelectTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTripView.swift; sourceTree = "<group>"; };
+		1B08ED50291AC35E00DD99F7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,10 @@
 		1B08ED38291AB6D800DD99F7 /* TravelPlanningApp */ = {
 			isa = PBXGroup;
 			children = (
+				1B08ED49291AB86C00DD99F7 /* Views */,
+				1B08ED47291AB85A00DD99F7 /* ViewModels */,
+				1B08ED48291AB86300DD99F7 /* Models */,
 				1B08ED39291AB6D800DD99F7 /* TravelPlanningAppApp.swift */,
-				1B08ED3B291AB6D800DD99F7 /* ContentView.swift */,
 				1B08ED3D291AB6D900DD99F7 /* Assets.xcassets */,
 				1B08ED3F291AB6D900DD99F7 /* Preview Content */,
 			);
@@ -65,6 +73,31 @@
 				1B08ED40291AB6D900DD99F7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B08ED47291AB85A00DD99F7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1B08ED48291AB86300DD99F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1B08ED49291AB86C00DD99F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */,
+				1B08ED4C291ABE1E00DD99F7 /* AddActivityView.swift */,
+				1B08ED4E291ABE3300DD99F7 /* SelectTripView.swift */,
+				1B08ED50291AC35E00DD99F7 /* ActivityView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B08ED3C291AB6D800DD99F7 /* ContentView.swift in Sources */,
+				1B08ED4F291ABE3300DD99F7 /* SelectTripView.swift in Sources */,
+				1B08ED4D291ABE1E00DD99F7 /* AddActivityView.swift in Sources */,
 				1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */,
+				1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */,
+				1B08ED4B291ABE0600DD99F7 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
