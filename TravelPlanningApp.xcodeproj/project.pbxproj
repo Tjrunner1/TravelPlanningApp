@@ -14,6 +14,8 @@
 		1B08ED4D291ABE1E00DD99F7 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4C291ABE1E00DD99F7 /* AddActivityView.swift */; };
 		1B08ED4F291ABE3300DD99F7 /* SelectTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4E291ABE3300DD99F7 /* SelectTripView.swift */; };
 		1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED50291AC35E00DD99F7 /* ActivityView.swift */; };
+		1B281720291AE637001708F7 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28171F291AE637001708F7 /* TripModel.swift */; };
+		1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		1B08ED4C291ABE1E00DD99F7 /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
 		1B08ED4E291ABE3300DD99F7 /* SelectTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTripView.swift; sourceTree = "<group>"; };
 		1B08ED50291AC35E00DD99F7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		1B28171F291AE637001708F7 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
+		1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		1B08ED47291AB85A00DD99F7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -85,6 +90,7 @@
 		1B08ED48291AB86300DD99F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1B28171F291AE637001708F7 /* TripModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 			files = (
 				1B08ED4F291ABE3300DD99F7 /* SelectTripView.swift in Sources */,
 				1B08ED4D291ABE1E00DD99F7 /* AddActivityView.swift in Sources */,
+				1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */,
+				1B281720291AE637001708F7 /* TripModel.swift in Sources */,
 				1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */,
 				1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */,
 				1B08ED4B291ABE0600DD99F7 /* CalendarView.swift in Sources */,
