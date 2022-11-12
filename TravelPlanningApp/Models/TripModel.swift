@@ -10,4 +10,7 @@ import Foundation
 struct Trip: Decodable, Identifiable {
     var id: Int
     var name: String
+    var startDate: Double
+    var endDate: Double
+    var days: [Day]
 }
