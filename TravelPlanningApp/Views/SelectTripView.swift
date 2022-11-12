@@ -31,7 +31,7 @@ struct SelectTripView: View {
                         }
                     }
                     NavigationLink{
-                        CalendarView()//will need to create a new calendar view
+                        AddTripView()
                     } label: {
                         Image(systemName: "plus.circle").font(.title)
                     }

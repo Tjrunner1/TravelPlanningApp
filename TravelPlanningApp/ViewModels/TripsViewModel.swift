@@ -11,24 +11,35 @@ class TripsViewModel: ObservableObject {
     @Published var trips = [Trip]()
     
     init() {
-//        parseJSONFile()
-        tempTripsData()
+        parseJSONFile()
     }
     
-    func parseJSONFile(){
+    func addTrip(name: String, startDate: Double, endDate: Double) {
+        var days = [Day]()
+        let numberOfDays: Int = Int(endDate - startDate)
+        for i in 1 ... numberOfDays {
+            let day = Day(id: i, activities: [Activity]())
+            days.append(day)
+        }
+        let trip = Trip(id: trips.count + 1, name: name, startDate: startDate, endDate: endDate, days: days)
+        trips.append(trip)
+        writeToJSONFile()
+    }
     
-        // 1. pathString
-        let pathString = Bundle.main.path(forResource: "games", ofType: "json")
-        if let path = pathString{
-            // 2. URL
-            let url = URL(fileURLWithPath: path)
-            // 3. Data object
+//    func addActivity(title: String, startTime: Double, endTime: Double, description: String = "") {
+//        Activity(id: <#T##Int#>, title: title, startTime: startTime, endTime: endTime, description: description)
+//
+//
+//        writeToJSONFile()
+//    }
+    
+    func parseJSONFile(){
+        //parse the json file
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let url = documentDirectory.appendingPathComponent("Trips.json")
             do{
                 let data = try Data(contentsOf: url)
-                // 4. json decoder
                 let jsonDecoder = JSONDecoder()
-                // 5. get json data
-                // var jsonData = try jsonDecoder.decode([People].self, from: data)
                 let jsonData = try jsonDecoder.decode([Trip].self, from: data)
                 
                 trips = jsonData
@@ -38,13 +49,45 @@ class TripsViewModel: ObservableObject {
         }
     }
     
-    func tempTripsData() {
-        let trip1 = Trip(id: 1, name: "Rome Trip")
-        let trip2 = Trip(id: 2, name: "Camping Trip")
-        let trip3 = Trip(id: 3, name: "New York City Trip")
+    func writeToJSONFile(){
+        //format data into json style
+        var topLevel: [AnyObject] = []
+        for trip in trips {
+            var tripDict: [String: AnyObject] = [:]
+            tripDict["id"] = NSNumber(value: trip.id)
+            tripDict["name"] = NSString(utf8String: trip.name)
+            tripDict["startDate"] = NSNumber(value: trip.startDate)
+            tripDict["endDate"] = NSNumber(value: trip.endDate)
+            var days: [AnyObject] = []
+            for day in trip.days {
+                var dayDict: [String: AnyObject] = [:]
+                dayDict["id"] = NSNumber(value: day.id)
+                var activities: [AnyObject] = []
+                for activity in day.activities {
+                    var activityDict: [String: AnyObject] = [:]
+                    activityDict["id"] = NSNumber(value: activity.id)
+                    activityDict["title"] = NSString(utf8String: activity.title)
+                    activityDict["startTime"] = NSNumber(value: activity.startTime)
+                    activityDict["endTime"] = NSNumber(value: activity.endTime)
+                    activityDict["description"] = NSString(utf8String: activity.description ?? "")
+                    activities.append(activityDict as AnyObject)
+                }
+                dayDict["activities"] = activities as AnyObject
+                days.append(dayDict as AnyObject)
+            }
+            tripDict["days"] = days as AnyObject
+            topLevel.append(tripDict as AnyObject)
+        }
         
-        trips.append(trip1)
-        trips.append(trip2)
-        trips.append(trip3)
+        //write to the json file
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: topLevel, options: .prettyPrinted)
+            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let url = documentDirectory.appendingPathComponent("Trips.json")
+                try jsonData.write(to: url)
+            }
+        } catch {
+            print(error)
+        }
     }
 }

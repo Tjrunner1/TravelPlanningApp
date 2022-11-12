@@ -1,0 +1,57 @@
+
+tripscount:
+
+{
+    "id": 1,
+    "name": "Rome Trip",
+    "startDate" : 1000000.0
+    "endDate" : 1800000.0
+    "days" : [
+        "day1" : {
+            "activies": [
+                {
+                    "id": 1
+                    "name": "beach"
+                    "startTime": 10000.0
+                    "endTime": 12000.0
+                    "decription": "going to the beach with fam"
+                    "location" : "ADRESS HERE"
+                    "link": "LINK TO SOMETHING"
+                    "attachments" : IDK How this works yet
+                },
+                {
+                    "id": 2
+                    "name": "dinner at sceshwans"
+                    "startTime": 13000.0
+                    "endTime": 17000.0
+                    "decription": "food
+                    "location" : "ADRESS HERE"
+                    "link": "LINK TO SOMETHING"
+                    "attachments" : IDK How this works yet
+                }
+            ]
+        },
+        "day2" : {
+            "activityList": [
+                {
+                    "id": 1
+                    "name": "beach"
+                    "startTime": 10000.0
+                    "endTime": 12000.0
+                    "decription": "going to the beach with fam"
+                    "location" : "ADRESS HERE"
+                    "link": "LINK TO SOMETHING"
+                    "attachments" : IDK How this works yet
+                },
+                {
+                    "id": 2
+                    "name": "dinner at sceshwans"
+                    "startTime": 13000.0
+                    "endTime": 17000.0
+                    "decription": "food
+                    "location" : "ADRESS HERE"
+                    "link": "LINK TO SOMETHING"
+                    "attachments" : IDK How this works yet
+                }
+            ]
+    }
