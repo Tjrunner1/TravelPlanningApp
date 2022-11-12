@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectTripView: View {
+struct HomepageView: View {
     var TVM: TripsViewModel = TripsViewModel()
     
     init() {
@@ -44,6 +44,6 @@ struct SelectTripView: View {
 
 struct SelectTripView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectTripView()
+        HomepageView()
     }
 }
