@@ -14,7 +14,7 @@ class TripsViewModel: ObservableObject {
         parseJSONFile()
     }
     
-    func addTrip(name: String, startDate: Double, endDate: Double) {
+    func addTrip(name: String, startDate: Double, endDate: Double) -> Trip {
         var days = [Day]()
         let numberOfDays: Int = Int(endDate - startDate)
         for i in 1 ... numberOfDays {
@@ -25,6 +25,8 @@ class TripsViewModel: ObservableObject {
         trips.append(trip)
         
         writeToJSONFile()
+        
+        return trip
     }
     
     func addActivity(tripID: Int, dayID: Int, title: String, startTime: Double, endTime: Double, description: String = "") {

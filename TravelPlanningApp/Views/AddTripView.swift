@@ -12,6 +12,7 @@ struct AddTripView: View {
     @State var tripName: String = "";
     @State var days: Int = 1
     @Binding var isCalendar: Bool
+    @Binding var selectedTrip: Trip?
     
     
     var body: some View {
@@ -40,7 +41,7 @@ struct AddTripView: View {
             }.padding(10)
             Spacer(minLength: 2)
             Button {
-                TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
+                selectedTrip = TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
                 isCalendar.toggle()
             } label: {
                 Text("Create Trip")
