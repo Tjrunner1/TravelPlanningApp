@@ -9,14 +9,15 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var TVM: TripsViewModel
+    var selectedTrip: Trip?
     
     var body: some View {
-        Text("CalendarView")
+        Text("\(selectedTrip?.name ?? "")")
     }
 }
 
-struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView()
-    }
-}
+//struct CalendarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CalendarView()
+//    }
+//}

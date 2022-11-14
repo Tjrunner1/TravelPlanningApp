@@ -9,18 +9,19 @@ import SwiftUI
 
 struct SwitchView: View {
     @State var isCalendar: Bool
+    var selectedTrip: Trip?
     
     var body: some View {
         if (isCalendar) {
-            CalendarView()
+            CalendarView(selectedTrip: selectedTrip)
         } else {
             AddTripView(isCalendar: $isCalendar)
         }
     }
 }
 
-struct SwitchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwitchView(isCalendar: false)
-    }
-}
+//struct SwitchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SwitchView(isCalendar: false)
+//    }
+//}
