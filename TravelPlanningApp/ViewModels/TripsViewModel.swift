@@ -23,15 +23,16 @@ class TripsViewModel: ObservableObject {
         }
         let trip = Trip(id: trips.count + 1, name: name, startDate: startDate, endDate: endDate, days: days)
         trips.append(trip)
+        
         writeToJSONFile()
     }
     
-//    func addActivity(title: String, startTime: Double, endTime: Double, description: String = "") {
-//        Activity(id: <#T##Int#>, title: title, startTime: startTime, endTime: endTime, description: description)
-//
-//
-//        writeToJSONFile()
-//    }
+    func addActivity(tripID: Int, dayID: Int, title: String, startTime: Double, endTime: Double, description: String = "") {
+        let activity = Activity(id: trips[tripID].days[dayID].activities.count + 1, title: title, startTime: startTime, endTime: endTime, description: description)
+        trips[tripID].days[dayID].activities.append(activity)
+
+        writeToJSONFile()
+    }
     
     func parseJSONFile(){
         //parse the json file
