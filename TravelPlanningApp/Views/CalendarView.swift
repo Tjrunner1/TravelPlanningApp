@@ -14,15 +14,16 @@ struct CalendarView: View {
     var body: some View {
     //    GeometryReader{gp in
             Text("\(selectedTrip?.name ?? "")")
-            HStack{
-                ForEach(0..<(selectedTrip?.days.count)!, id: \.self){day in
-                    ZStack{
-                        Rectangle().frame(width: 50, height: 50, alignment: .leading).foregroundColor(.gray)
-                        Text("\(day + 1)")
-                        
-                    }
+        VStack{
+                HStack{
+                    ForEach(0..<(selectedTrip?.days.count)!, id: \.self){day in
+                        ZStack{
+                            Rectangle().frame(width: 20, height: 20, alignment: .leading).foregroundColor(.gray)
+                            Text("\(day + 1)")
+                        }
                 }
             }
+        }
        // }
     }
 }
@@ -32,3 +33,8 @@ struct CalendarView: View {
 //        CalendarView()
 //    }
 //}
+
+//for every 7 days
+//create new Hstack
+
+//for i in selectedtrip.days where i % 7 == 0
