@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    var selectedTrip: Trip?
+    @Binding var selectedTrip: Trip?
     
     var body: some View {
     //    GeometryReader{gp in

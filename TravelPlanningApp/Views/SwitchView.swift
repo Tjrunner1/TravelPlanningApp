@@ -9,13 +9,13 @@ import SwiftUI
 
 struct SwitchView: View {
     @State var isCalendar: Bool
-    var selectedTrip: Trip?
+    @State var selectedTrip: Trip? = nil
     
     var body: some View {
         if (isCalendar) {
-            CalendarView(selectedTrip: selectedTrip)
+            CalendarView(selectedTrip: $selectedTrip)
         } else {
-            AddTripView(isCalendar: $isCalendar)
+            AddTripView(isCalendar: $isCalendar, selectedTrip: $selectedTrip)
         }
     }
 }
