@@ -40,7 +40,7 @@ struct AddTripView: View {
             }.padding(10)
             Spacer(minLength: 2)
             Button {
-                TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
+                let trip = TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
                 isCalendar.toggle()
             } label: {
                 Text("Create Trip")

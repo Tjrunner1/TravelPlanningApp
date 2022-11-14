@@ -12,7 +12,18 @@ struct CalendarView: View {
     var selectedTrip: Trip?
     
     var body: some View {
-        Text("\(selectedTrip?.name ?? "")")
+    //    GeometryReader{gp in
+            Text("\(selectedTrip?.name ?? "")")
+            HStack{
+                ForEach(0..<(selectedTrip?.days.count)!, id: \.self){day in
+                    ZStack{
+                        Rectangle().frame(width: 50, height: 50, alignment: .leading).foregroundColor(.gray)
+                        Text("\(day + 1)")
+                        
+                    }
+                }
+            }
+       // }
     }
 }
 
