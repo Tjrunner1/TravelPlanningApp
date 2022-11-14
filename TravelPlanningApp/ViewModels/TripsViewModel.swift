@@ -85,6 +85,7 @@ class TripsViewModel: ObservableObject {
             if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let url = documentDirectory.appendingPathComponent("Trips.json")
                 try jsonData.write(to: url)
+                //print(url)
             }
         } catch {
             print(error)

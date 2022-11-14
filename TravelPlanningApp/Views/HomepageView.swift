@@ -18,8 +18,6 @@ struct HomepageView: View {
         NavigationView{
             ScrollView{
                 VStack{
-                    Text("Hi there!")
-                    Text("Add a trip plan or select a prexisiting plan to get started")
                     ForEach(TVM.trips) { trip in
                         NavigationLink{
                             CalendarView()//will need to pass the vacation
@@ -36,7 +34,8 @@ struct HomepageView: View {
                         Image(systemName: "plus.circle").font(.title)
                     }
                 }
-            }
+            }.navigationTitle("My Trips")
+                .navigationBarTitleDisplayMode(.inline)
         }
         
     }
