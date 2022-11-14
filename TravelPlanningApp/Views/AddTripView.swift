@@ -15,7 +15,6 @@ struct AddTripView: View {
     
     
     var body: some View {
-        Text("add trip view")
         let daysString = Binding<String>(
             get : {
                 String(self.days)
@@ -28,47 +27,27 @@ struct AddTripView: View {
             }
         )
 
-
         VStack{
+            Text("Create a Trip")
+                .font(.title)
             HStack{
                 Text("Trip Name: ")
-                TextField("Camping Trip", text: $tripName)
-            }
+                TextField("Rome 2023", text: $tripName)
+            }.padding(10)
             HStack{
                 Text("Number of days:")
                 TextField("5", text: daysString)
-            }
-            Button{
+            }.padding(10)
+            Spacer(minLength: 2)
+            Button {
                 TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
                 isCalendar.toggle()
             } label: {
-                Label("Create trip", systemImage: "plus.circle")
-        
-       
-            VStack{
-                Text("Create a Trip")
-                    .font(.title)
-                HStack{
-                    Text("Trip Name: ")
-                    TextField("Rome 2023", text: $tripName)
-                }.padding(10)
-                HStack{
-                    Text("Number of days:")
-                    TextField("5", text: daysString)
-                }.padding(10)
-                Spacer(minLength: 2)
-                Button {
-                    TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
-                    
-                } label: {
-                    Text("Create Trip")
-                    Image(systemName: "plus.circle").font(.title)
-                }
-                Spacer()
+                Text("Create Trip")
+                Image(systemName: "plus.circle").font(.title)
             }
+            Spacer()
         }
-    
-       
     }
 }
 
