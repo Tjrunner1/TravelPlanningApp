@@ -22,7 +22,7 @@ struct HomepageView: View {
                             Text("Add a trip plan or select a prexisiting plan to get started")
                             ForEach(TVM.trips) { trip in
                                 NavigationLink{
-                                    CalendarView()//will need to pass the vacation
+                                    SwitchView(isCalendar: true)//will need to pass the vacation
                                 } label: {
                                     ZStack{
                                         Rectangle().cornerRadius(20).foregroundColor(.white).shadow(radius: 5).frame(height: 100)
@@ -31,7 +31,7 @@ struct HomepageView: View {
                                 }
                             }
                     NavigationLink{
-                        AddTripView()
+                        SwitchView(isCalendar: false)
                     } label: {
                         Image(systemName: "plus.circle").font(.title)
                     }

@@ -11,6 +11,7 @@ struct AddTripView: View {
     @EnvironmentObject var TVM: TripsViewModel
     @State var tripName: String = "";
     @State var days: Int = 1
+    @Binding var isCalendar: Bool
     
     
     var body: some View {
@@ -37,24 +38,20 @@ struct AddTripView: View {
                 Text("Number of days:")
                 TextField("5", text: daysString)
             }
-            NavigationLink{
-                CalendarView()
+            Button{
+                TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
+                isCalendar.toggle()
             } label: {
                 Label("Create trip", systemImage: "plus.circle")
             }
-            .simultaneousGesture(TapGesture().onEnded{
-                print("simultaneousGesture")
-                    TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
-                print("TVM.addtrip")
-            })
         }
     
        
     }
 }
 
-struct AddTripView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTripView().environmentObject(TripsViewModel())
-    }
-}
+//struct AddTripView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddTripView(isCalendar: Binding<Bool>false).environmentObject(TripsViewModel())
+//    }
+//}
