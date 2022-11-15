@@ -12,7 +12,12 @@ struct AddTripView: View {
     @State var tripName: String = "";
     @State var days: Int = 1
     @Binding var isCalendar: Bool
-    @Binding var selectedTrip: Trip?
+    @Binding var identifier: Identifiers?
+    
+    //These need a home and added to the view for start and end date
+    let day = 14
+    let month = 6
+    let year = 2023
     
     
     var body: some View {
@@ -41,7 +46,10 @@ struct AddTripView: View {
             }.padding(10)
             Spacer(minLength: 2)
             Button {
-                selectedTrip = TVM.addTrip(name: tripName, startDate: 0, endDate: Double(days))
+                let startDateComponents = DateComponents(year: year, month: month, day: day)
+                let endDateComponents = DateComponents(year: year, month: month, day: day)
+                
+                identifier = TVM.addTrip(name: tripName, startDateComponents: startDateComponents, endDateComponents: endDateComponents)
                 isCalendar.toggle()
             } label: {
                 Text("Create Trip")
@@ -52,8 +60,3 @@ struct AddTripView: View {
     }
 }
 
-//struct AddTripView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddTripView(isCalendar: Binding<Bool>false).environmentObject(TripsViewModel())
-//    }
-//}

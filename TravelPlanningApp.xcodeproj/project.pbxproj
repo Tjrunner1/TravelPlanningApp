@@ -19,6 +19,7 @@
 		1BB04692292015EF00F8F949 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB04691292015EF00F8F949 /* DayModel.swift */; };
 		1BB046942920188300F8F949 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046932920188300F8F949 /* ActivityModel.swift */; };
 		1BB046962921C9D900F8F949 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046952921C9D900F8F949 /* SwitchView.swift */; };
+		1BB046BA29242A9D00F8F949 /* IdentifiersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046B929242A9D00F8F949 /* IdentifiersModel.swift */; };
 		1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		1BB04691292015EF00F8F949 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		1BB046932920188300F8F949 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		1BB046952921C9D900F8F949 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		1BB046B929242A9D00F8F949 /* IdentifiersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiersModel.swift; sourceTree = "<group>"; };
 		1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				1B28171F291AE637001708F7 /* TripModel.swift */,
 				1BB04691292015EF00F8F949 /* DayModel.swift */,
 				1BB046932920188300F8F949 /* ActivityModel.swift */,
+				1BB046B929242A9D00F8F949 /* IdentifiersModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			files = (
 				1BB046942920188300F8F949 /* ActivityModel.swift in Sources */,
 				1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */,
+				1BB046BA29242A9D00F8F949 /* IdentifiersModel.swift in Sources */,
 				1B08ED4D291ABE1E00DD99F7 /* AddActivityView.swift in Sources */,
 				1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */,
 				1BB04692292015EF00F8F949 /* DayModel.swift in Sources */,

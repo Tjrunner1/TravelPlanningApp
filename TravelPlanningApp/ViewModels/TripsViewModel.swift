@@ -9,33 +9,49 @@ import Foundation
 
 class TripsViewModel: ObservableObject {
     @Published var trips = [Trip]()
-    
+
     init() {
         parseJSONFile()
     }
-    
-    func addTrip(name: String, startDate: Double, endDate: Double) -> Trip {
+
+    func addTrip(name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) -> Identifiers {
+        //convert Date Components to dates
+        let startDate = Calendar.current.date(from: startDateComponents)!
+        let endDate = Calendar.current.date(from: endDateComponents)!
+
+        //Create each day in the trip
         var days = [Day]()
-        let numberOfDays: Int = Int(endDate - startDate)
-        for i in 1 ... numberOfDays {
-            let day = Day(id: i, activities: [Activity]())
+        let numberOfDays: Int = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day! + 1
+        for i in 0 ..< numberOfDays {
+            let day = Day(id: i, date: Calendar.current.date(byAdding: .day, value: i, to: startDate)!.timeIntervalSinceReferenceDate, activities: [Activity]())
             days.append(day)
         }
-        let trip = Trip(id: trips.count + 1, name: name, startDate: startDate, endDate: endDate, days: days)
-        trips.append(trip)
-        
-        writeToJSONFile()
-        
-        return trip
-    }
-    
-    func addActivity(tripID: Int, dayID: Int, title: String, startTime: Double, endTime: Double, description: String = "") {
-        let activity = Activity(id: trips[tripID].days[dayID].activities.count + 1, title: title, startTime: startTime, endTime: endTime, description: description)
-        trips[tripID].days[dayID].activities.append(activity)
 
+        //Create the trip
+        let trip = Trip(id: trips.count, name: name, startDate: startDate.timeIntervalSinceReferenceDate, endDate: endDate.timeIntervalSinceReferenceDate, days: days)
+        trips.append(trip)
+
+        //save the info to json
         writeToJSONFile()
+        
+        return Identifiers(tripID: trip.id)
     }
-    
+
+    func addActivity(identifier: Identifiers, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String = "") -> Identifiers {
+        //convert Date Components to dates
+        let startTime = Calendar.current.date(from: startTimeComponents)!
+        let endTime = Calendar.current.date(from: endTimeComponents)!
+
+        let activity = Activity(id: trips[identifier.tripID].days[identifier.dateID!].activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description)
+        trips[identifier.tripID].days[identifier.dateID!].activities.append(activity)
+
+        //save the info to json
+        writeToJSONFile()
+        
+        return Identifiers(tripID: identifier.tripID, dateID: identifier.dateID, activityID: activity.id)
+    }
+
+
     func parseJSONFile(){
         //parse the json file
         if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -44,14 +60,14 @@ class TripsViewModel: ObservableObject {
                 let data = try Data(contentsOf: url)
                 let jsonDecoder = JSONDecoder()
                 let jsonData = try jsonDecoder.decode([Trip].self, from: data)
-                
+
                 trips = jsonData
             } catch{
                 print(error)
             }
         }
     }
-    
+
     func writeToJSONFile(){
         //format data into json style
         var topLevel: [AnyObject] = []
@@ -65,6 +81,7 @@ class TripsViewModel: ObservableObject {
             for day in trip.days {
                 var dayDict: [String: AnyObject] = [:]
                 dayDict["id"] = NSNumber(value: day.id)
+                dayDict["date"] = NSNumber(value: day.date)
                 var activities: [AnyObject] = []
                 for activity in day.activities {
                     var activityDict: [String: AnyObject] = [:]
@@ -81,7 +98,7 @@ class TripsViewModel: ObservableObject {
             tripDict["days"] = days as AnyObject
             topLevel.append(tripDict as AnyObject)
         }
-        
+
         //write to the json file
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: topLevel, options: .prettyPrinted)

@@ -10,7 +10,6 @@ import SwiftUI
 struct HomepageView: View {
     @EnvironmentObject var TVM: TripsViewModel
 
-    
     init() {
         //check to see if alternate view should be loaded (aka. if the date overlaps with a trip)
     }
@@ -21,7 +20,8 @@ struct HomepageView: View {
                 VStack{
                     ForEach(TVM.trips) { trip in
                         NavigationLink{
-                            SwitchView(isCalendar: true, selectedTrip: trip)//will need to pass the vacation
+                            let identifier = Identifiers(tripID: trip.id)
+                            SwitchView(isCalendar: true, identifier: identifier)
                         } label: {
                             ZStack{
                                 Rectangle().cornerRadius(20).foregroundColor(.white).shadow(radius: 5).frame(height: 100)
