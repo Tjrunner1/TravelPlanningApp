@@ -9,5 +9,6 @@ import Foundation
 
 struct Day: Decodable, Identifiable {
     var id: Int
+    var date: Double
     var activities: [Activity]
 }

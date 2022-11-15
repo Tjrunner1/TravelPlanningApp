@@ -9,15 +9,22 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    @Binding var selectedTrip: Trip?
+    @Binding var identifier: Identifiers?
     
     var body: some View {
-        Text("\(selectedTrip?.name ?? "")")
+        VStack{
+            Text("\(TVM.trips[identifier!.tripID].name)")
+            Button{
+                //do the thing
+                let startDateComponents = DateComponents(year: 2023, month: 12, day: 2)
+                let endDateComponents = DateComponents(year: 2023, month: 12, day: 2)
+                
+                let test = Identifiers(tripID: identifier!.tripID, dateID: 0)
+                TVM.addActivity(identifier: test, title: "thing 1", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
+            } label: {
+                Text("test the thing")
+            }
+        }
     }
 }
 
-//struct CalendarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalendarView()
-//    }
-//}
