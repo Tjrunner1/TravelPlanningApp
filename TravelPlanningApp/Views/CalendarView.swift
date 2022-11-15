@@ -21,20 +21,6 @@ struct CalendarView: View {
     
     var body: some View {
         TagsView(items: days)
-       //GeometryReader{gp in
-//            Text("\(selectedTrip?.name ?? "")")
-//        VStack{
-//            HStack(alignment: .center){
-//                    ForEach(0..<(selectedTrip?.days.count)!, id: \.self){day in
-//                        ZStack{
-//                            Rectangle().frame(width: 20, height: 20, alignment: .leading).foregroundColor(.gray)
-//                            Text("\(day + 1)")
-//                        }
-//                }
-//            }
-//
-//        }
-      // }
     }
 }
 
@@ -95,13 +81,3 @@ struct TagsView: View{
     }
 }
 
-//struct CalendarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalendarView()
-//    }
-//}
-
-//for every 7 days
-//create new Hstack
-
-//for i in selectedtrip.days where i % 7 == 0
