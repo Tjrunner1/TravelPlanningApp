@@ -27,7 +27,7 @@ struct CalendarView: View {
 
 struct TagsView: View{
     @EnvironmentObject var TVM: TripsViewModel
-    var identifier: Identifiers?
+    //var identifier: Identifiers?
     let items: [Day]
     @Binding var identifier: Identifiers?
     var groupedItems: [[Day]] = [[Day]]()
@@ -103,7 +103,7 @@ struct TagsView: View{
                         VStack{
                             ForEach(TVM.trips[identifier!.tripID].days){day in
                                 if selectedDate == day.id{
-                                    ForEach(TVM.trips[identifier!.tripID].days[identifier!.activityID!].activities){activity in
+                                    ForEach(TVM.trips[identifier!.tripID].days[identifier!.dateID!].activities){activity in
                                         Text("\(activity.title)")
                                         
                                     }
@@ -111,7 +111,6 @@ struct TagsView: View{
                             }
                         }
                     }
-                
             }
         }
     }
