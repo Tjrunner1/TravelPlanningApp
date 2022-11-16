@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct AddActivityView: View {
+    @EnvironmentObject var TVM: TripsViewModel
+    @Binding var identifier: Identifiers?
+    
     var body: some View {
-        Text("Hello Activity!")
-    }
-}
-
-struct AddActivityView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddActivityView()
+        Button{
+            let date = Date(timeIntervalSinceNow: TVM.trips[identifier!.tripID].days[identifier!.dateID!].date)
+            let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
+            let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
+            
+            TVM.addActivity(identifier: identifier!, title: "My Fake Activity", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
+        } label: {
+            Text("Click me to add fake activities")
+        }
     }
 }

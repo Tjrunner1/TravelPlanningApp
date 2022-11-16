@@ -21,20 +21,21 @@ struct CalendarView: View {
     }
     
     var body: some View {
-        TagsView(items: days)
+        TagsView(items: days, identifier: $identifier)
     }
 }
 
 struct TagsView: View{
     @EnvironmentObject var TVM: TripsViewModel
-//    @Binding var identifier: Identifiers?
     let items: [Day]
+    @Binding var identifier: Identifiers?
     var groupedItems: [[Day]] = [[Day]]()
     let screenWidth = UIScreen.main.bounds.width
     @State var selectedDate: Int? = nil
     
-    init(items: [Day]){
+    init(items: [Day], identifier: Binding<Identifiers?>){
         self.items = items
+        self._identifier = identifier
         groupedItems = createGroupedItems(items)
     }
     
@@ -80,6 +81,7 @@ struct TagsView: View{
                             ForEach(groupedItems[index]){day in
                                 Button{
                                     selectedDate = day.id
+                                    identifier?.dateID = day.id
                                 } label: {
                                 Text(String(format: "%02d", day.id+1))
                                     .padding()
@@ -91,7 +93,7 @@ struct TagsView: View{
                     }
                 }
                     NavigationLink{
-                        AddActivityView()
+                        AddActivityView(identifier: $identifier)
                     } label: {
                         Image(systemName: "plus.circle").font(.title).frame(alignment: .center)
                     }
