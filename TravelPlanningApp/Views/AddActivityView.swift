@@ -17,9 +17,9 @@ struct AddActivityView: View {
             let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
             let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
             
-            TVM.addActivity(identifier: identifier!, title: "My Fake Activity", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
+            TVM.addActivity(identifier: identifier!, title: "My Activity", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
         } label: {
-            Text("Click me to add fake activities")
+            Text("Click me to add an activity")
         }
     }
 }
