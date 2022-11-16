@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct AddActivityView: View {
+    
+    
     var body: some View {
-        Text("Hello Activity!")
+        VStack{
+            Text("Add an activity")
+        }
     }
 }
 

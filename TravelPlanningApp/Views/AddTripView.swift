@@ -23,18 +23,6 @@ struct AddTripView: View {
     
     
     var body: some View {
-        let daysString = Binding<String>(
-            get : {
-                String(self.days)
-            },
-            set : {
-                if let value = NumberFormatter().number(from: $0) {
-                    //when input is a valid number
-                    self.days = value.intValue
-                }
-            }
-        )
-
         VStack{
             Text("Create a Trip")
                 .font(.title)
@@ -46,10 +34,6 @@ struct AddTripView: View {
                 .frame(width: 250, alignment: .leading)
             DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
                 .frame(width: 250, alignment: .leading)
-//            HStack{
-//                Text("Number of days:")
-//                TextField("5", text: daysString)
-//            }.padding(10)
             Spacer(minLength: 2)
             Button {
                 let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
