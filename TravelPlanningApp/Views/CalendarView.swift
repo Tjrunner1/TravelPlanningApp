@@ -27,7 +27,7 @@ struct CalendarView: View {
 
 struct TagsView: View{
     @EnvironmentObject var TVM: TripsViewModel
-//    @Binding var identifier: Identifiers?
+    var identifier: Identifiers?
     let items: [Day]
     var groupedItems: [[Day]] = [[Day]]()
     let screenWidth = UIScreen.main.bounds.width
@@ -70,7 +70,7 @@ struct TagsView: View{
     
     var body: some View{
         //var displayActivites: Bool = false
-        
+      
         NavigationView{
             VStack(alignment: .center){
                 //TVM.trips[identifier?.tripID].startDate
@@ -96,7 +96,17 @@ struct TagsView: View{
                         Image(systemName: "plus.circle").font(.title).frame(alignment: .center)
                     }
                     if(selectedDate != nil){
-                        Text("activities for \(selectedDate!)")
+                        Text("Activities")
+                        VStack{
+                            ForEach(TVM.trips[identifier!.tripID].days){day in
+                                if selectedDate == day.id{
+                                    ForEach(TVM.trips[identifier!.tripID].days[identifier!.activityID!].activities){activity in
+                                        Text("\(activity.title)")
+                                        
+                                    }
+                                }
+                            }
+                        }
                     }
                 
             }
