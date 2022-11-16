@@ -31,6 +31,7 @@ struct TagsView: View{
     let items: [Day]
     var groupedItems: [[Day]] = [[Day]]()
     let screenWidth = UIScreen.main.bounds.width
+    @State var selectedDate: Int? = nil
     
     init(items: [Day]){
         self.items = items
@@ -68,23 +69,36 @@ struct TagsView: View{
     }
     
     var body: some View{
+        //var displayActivites: Bool = false
+        
         NavigationView{
-            //TVM.trips[identifier?.tripID].startDate
-            VStack(alignment: .leading){
-                ForEach(groupedItems.indices){index in
-                    HStack{
-                        ForEach(groupedItems[index]){day in
-                            NavigationLink{
-                                AddActivityView()
-                            } label: {
-                            Text(String(format: "%02d", day.id+1))
-                                .padding()
-                                .background(Color.gray)
-                                .foregroundColor(.white)
+            VStack(alignment: .center){
+                //TVM.trips[identifier?.tripID].startDate
+                VStack(alignment: .leading){
+                    ForEach(groupedItems.indices){index in
+                        HStack{
+                            ForEach(groupedItems[index]){day in
+                                Button{
+                                    selectedDate = day.id
+                                } label: {
+                                Text(String(format: "%02d", day.id+1))
+                                    .padding()
+                                    .background(Color.gray)
+                                    .foregroundColor(.white)
+                                }
                             }
                         }
                     }
                 }
+                    NavigationLink{
+                        AddActivityView()
+                    } label: {
+                        Image(systemName: "plus.circle").font(.title).frame(alignment: .center)
+                    }
+                    if(selectedDate != nil){
+                        Text("activities for \(selectedDate!)")
+                    }
+                
             }
         }
     }
