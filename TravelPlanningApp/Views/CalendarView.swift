@@ -10,15 +10,15 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    @Binding var selectedTrip: Trip?
+    @Binding var identifier: Identifiers?
+//    @Binding var selectedTrip: Trip?
     @State var width = 0
     var days: [Day]{
         get{
-            return selectedTrip!.days
+           // return TVM.trips[identifier!.tripID].days
+            return TVM.trips[identifier!.tripID].days
         }
     }
-    
-    @Binding var identifier: Identifiers?
     
     var body: some View {
         TagsView(items: days)
@@ -26,7 +26,8 @@ struct CalendarView: View {
 }
 
 struct TagsView: View{
-    
+    @EnvironmentObject var TVM: TripsViewModel
+//    @Binding var identifier: Identifiers?
     let items: [Day]
     var groupedItems: [[Day]] = [[Day]]()
     let screenWidth = UIScreen.main.bounds.width
@@ -48,6 +49,7 @@ struct TagsView: View{
             label.text = String(format: "%02d", day.id)
             label.sizeToFit()
             let labelWidth = label.frame.size.width + 32 // 16 padding on each size
+     
             
             if(width + labelWidth + 32) < screenWidth{
                 width += labelWidth
@@ -66,17 +68,23 @@ struct TagsView: View{
     }
     
     var body: some View{
-        VStack(alignment: .leading){
-            ForEach(groupedItems.indices){index in
-                HStack{
-                    ForEach(groupedItems[index]){day in
-                        Text(String(format: "%02d", day.id))
-                            .padding()
-                            .background(Color.gray)
-                            .foregroundColor(.white)
+        NavigationView{
+            //TVM.trips[identifier?.tripID].startDate
+            VStack(alignment: .leading){
+                ForEach(groupedItems.indices){index in
+                    HStack{
+                        ForEach(groupedItems[index]){day in
+                            NavigationLink{
+                                AddActivityView()
+                            } label: {
+                            Text(String(format: "%02d", day.id+1))
+                                .padding()
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                            }
+                        }
                     }
                 }
-                
             }
         }
     }
