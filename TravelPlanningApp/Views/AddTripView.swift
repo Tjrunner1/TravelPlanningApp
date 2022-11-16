@@ -16,10 +16,6 @@ struct AddTripView: View {
     
     @State private var startDate = Date()
     @State private var endDate = Date()
-    //These need a home and added to the view for start and end date
-    let day = 14
-    let month = 6
-    let year = 2023
     
     
     var body: some View {
@@ -46,10 +42,6 @@ struct AddTripView: View {
                 .frame(width: 250, alignment: .leading)
             DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
                 .frame(width: 250, alignment: .leading)
-//            HStack{
-//                Text("Number of days:")
-//                TextField("5", text: daysString)
-//            }.padding(10)
             Spacer(minLength: 2)
             Button {
                 let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
