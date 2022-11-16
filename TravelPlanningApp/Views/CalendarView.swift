@@ -86,7 +86,7 @@ struct TagsView: View{
                                 } label: {
                                 Text(String(format: "%02d", day.id+1))
                                     .padding()
-                                    .background(Color.gray)
+                                    .background(Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
                                     .foregroundColor(.white)
                                 }
                             }
