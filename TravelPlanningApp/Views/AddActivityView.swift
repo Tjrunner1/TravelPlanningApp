@@ -35,15 +35,5 @@ struct AddActivityView: View {
         }label:{
             Text("Create activity")
         }
-        
-//        Button{
-//            let date = Date(timeIntervalSinceNow: TVM.trips[identifier.tripID].days[identifier.dateID!].date)
-//            let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-//            let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-//
-//            TVM.addActivity(identifier: identifier, title: "My Activity", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
-//        } label: {
-//            Text("Click me to add an activity")
-//        }
     }
 }
