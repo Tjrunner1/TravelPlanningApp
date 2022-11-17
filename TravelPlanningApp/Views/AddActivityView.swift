@@ -14,28 +14,39 @@ struct AddActivityView: View {
     @State private var startTime = Date()
     @State private var endTime = Date()
     @State private var title: String = ""
+    let dateFormatter = DateFormatter()
     
+//    init(identifier: Identifiers){
+//        identifier=identifier
+//        dateFormatter.dateStyle = .medium
+//    }
+//
     var body: some View {
+    
         
-        HStack{
-            Text("Event Title")
-            TextField("Hike", text: $title)
-        }
+        VStack{
+            Text("Add an event")
+//            Text("\(dateFormatter.string(from: Date(timeIntervalSinceReferenceDate:  TimeInterval(TVM.trips[identifier.tripID].days[identifier.dateID!].date))))")
         
-        DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
-        DatePicker("End Time", selection: $endTime, displayedComponents: [.hourAndMinute])
-        
-        Button{
-            let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-            let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from:endTime)
+            HStack{
+                Text("Event Title")
+                TextField("Hike", text: $title)
+            }
             
-            TVM.addActivity(identifier: identifier, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents)
+            DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
+            DatePicker("End Time", selection: $endTime, displayedComponents: [.hourAndMinute])
             
-            dismiss()
-        }label:{
-            Text("Create activity")
+            Button{
+                let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+                let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from:endTime)
+                
+                TVM.addActivity(identifier: identifier, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents)
+                
+                dismiss()
+            }label:{
+                Text("Create activity")
+            }
         }
-        
 //        Button{
 //            let date = Date(timeIntervalSinceNow: TVM.trips[identifier.tripID].days[identifier.dateID!].date)
 //            let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
@@ -45,5 +56,8 @@ struct AddActivityView: View {
 //        } label: {
 //            Text("Click me to add an activity")
 //        }
+        
+       
+        
     }
 }
