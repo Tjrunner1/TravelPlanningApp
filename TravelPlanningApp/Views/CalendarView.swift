@@ -10,104 +10,75 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    @Binding var identifier: Identifiers?
-//    @Binding var selectedTrip: Trip?
-    @State var width = 0
-    var days: [Day]{
-        get{
-           // return TVM.trips[identifier!.tripID].days
-            return TVM.trips[identifier!.tripID].days
-        }
-    }
+    @State var identifier: Identifiers
     
     var body: some View {
-        TagsView(items: days, identifier: $identifier)
+        GeometryReader{ gp in
+            VStack{
+                TagsView(identifier: $identifier).frame(height: gp.size.height/4)
+                Divider()
+                IndvidualDayView(identifier: $identifier)
+                Spacer()
+            }
+        }
+        
     }
 }
 
-struct TagsView: View{
+struct IndvidualDayView: View{
     @EnvironmentObject var TVM: TripsViewModel
-    //var identifier: Identifiers?
-    let items: [Day]
-    @Binding var identifier: Identifiers?
-    var groupedItems: [[Day]] = [[Day]]()
-    let screenWidth = UIScreen.main.bounds.width
-    @State var selectedDate: Int? = nil
-    
-    init(items: [Day], identifier: Binding<Identifiers?>){
-        self.items = items
-        self._identifier = identifier
-        groupedItems = createGroupedItems(items)
-    }
-    
-    private func createGroupedItems(_ items: [Day]) -> [[Day]]{
-        
-        var groupedItems: [[Day]] = [[Day]]()
-        var TempItems: [Day] = [Day]()
-        var width: CGFloat = 0
-
-        for day in items{
-            
-            let label = UILabel()
-            label.text = String(format: "%02d", day.id)
-            label.sizeToFit()
-            let labelWidth = label.frame.size.width + 32 // 16 padding on each size
-     
-            
-            if(width + labelWidth + 32) < screenWidth{
-                width += labelWidth
-                TempItems.append(day)
-            }else{
-                width = labelWidth
-                groupedItems.append(TempItems)
-                TempItems.removeAll()
-                TempItems.append(day)
-            }
-            
-        }
-        groupedItems.append(TempItems)
-        
-        return groupedItems
-    }
+    @Binding var identifier: Identifiers
     
     var body: some View{
-        //var displayActivites: Bool = false
-      
-        NavigationView{
-            VStack(alignment: .center){
-                //TVM.trips[identifier?.tripID].startDate
-                VStack(alignment: .leading){
-                    ForEach(groupedItems.indices){index in
-                        HStack{
-                            ForEach(groupedItems[index]){day in
-                                Button{
-                                    selectedDate = day.id
-                                    identifier?.dateID = day.id
+        VStack{
+            if(identifier.dateID != nil){
+                Text("Activities")
+                VStack{
+                    ForEach(TVM.trips[identifier.tripID].days){day in
+                        if identifier.dateID == day.id{
+                            ForEach(TVM.trips[identifier.tripID].days[(identifier.dateID!)].activities){activity in
+                                NavigationLink{
+                                    ActivityView()
                                 } label: {
-                                Text(String(format: "%02d", day.id+1))
-                                    .padding()
-                                    .background(Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
-                                    .foregroundColor(.white)
+                                    ZStack{
+                                        Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame( height: 100)
+                                        Text("\(activity.title)").foregroundColor(.black)
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                    NavigationLink{
-                        AddActivityView(identifier: $identifier)
-                    } label: {
-                        Image(systemName: "plus.circle").font(.title).frame(alignment: .center)
-                    }
-                    if(selectedDate != nil){
-                        Text("Activities")
-                        VStack{
-                            ForEach(TVM.trips[identifier!.tripID].days){day in
-                                if selectedDate == day.id{
-                                    ForEach(TVM.trips[identifier!.tripID].days[identifier!.dateID!].activities){activity in
-                                        Text("\(activity.title)")
-                                        
-                                    }
-                                }
+            }
+            NavigationLink{
+                AddActivityView(identifier: $identifier)
+            } label: {
+                Image(systemName: "plus.circle").font(.title).frame(alignment: .center)
+            }
+        }
+    }
+}
+
+struct TagsView: View{
+    @EnvironmentObject var TVM: TripsViewModel
+    @Binding var identifier: Identifiers
+    
+    init(identifier: Binding<Identifiers>){
+        self._identifier = identifier
+    }
+    
+    var body: some View{
+        VStack{
+            GeometryReader { gp in
+                    HStack{
+                        ForEach(TVM.trips[identifier.tripID].days) { day in
+                            Button{
+                                identifier.dateID = day.id
+                            } label: {
+                                ZStack{
+                                    Rectangle().foregroundColor(Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+                                    Text(String(format: "%02d", day.id+1)).foregroundColor(.white)
+                                }.frame(width: gp.size.width/6, height: gp.size.height/2)
                             }
                         }
                     }

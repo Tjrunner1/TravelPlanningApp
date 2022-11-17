@@ -12,6 +12,7 @@ struct HomepageView: View {
 
     init() {
         //check to see if alternate view should be loaded (aka. if the date overlaps with a trip)
+        findApplicableTrip()
     }
     
     var body: some View {
@@ -26,7 +27,6 @@ struct HomepageView: View {
                             ZStack{
                                 Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame( height: 100)
                                 Text("\(trip.name)").foregroundColor(.black)
-                                    
                             }
                         }
                     }
@@ -52,4 +52,8 @@ struct SelectTripView_Previews: PreviewProvider {
     static var previews: some View {
         HomepageView().environmentObject(TripsViewModel())
     }
+}
+
+func findApplicableTrip() {
+    
 }
