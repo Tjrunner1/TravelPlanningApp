@@ -13,4 +13,6 @@ struct Activity: Decodable, Identifiable {
     var startTime: Double
     var endTime: Double
     var description: String?
+    var url: String?
+    var address: String?
 }

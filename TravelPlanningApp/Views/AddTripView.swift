@@ -19,18 +19,6 @@ struct AddTripView: View {
     
     
     var body: some View {
-        let daysString = Binding<String>(
-            get : {
-                String(self.days)
-            },
-            set : {
-                if let value = NumberFormatter().number(from: $0) {
-                    //when input is a valid number
-                    self.days = value.intValue
-                }
-            }
-        )
-
         VStack{
             Text("Create a Trip")
                 .font(.title)
@@ -45,7 +33,7 @@ struct AddTripView: View {
             Spacer(minLength: 2)
             Button {
                 let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
-                let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from:endDate)
+                let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: endDate)
                 
                 identifier = TVM.addTrip(name: tripName, startDateComponents: startDateComponents, endDateComponents: endDateComponents)
                 isCalendar.toggle()

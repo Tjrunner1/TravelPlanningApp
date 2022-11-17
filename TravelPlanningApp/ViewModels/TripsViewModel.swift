@@ -37,12 +37,12 @@ class TripsViewModel: ObservableObject {
         return Identifiers(tripID: trip.id)
     }
 
-    func addActivity(identifier: Identifiers, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String = "") -> Identifiers {
+    func addActivity(identifier: Identifiers, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String = "", url: String = "", address: String = "") -> Identifiers {
         //convert Date Components to dates
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
 
-        let activity = Activity(id: trips[identifier.tripID].days[identifier.dateID!].activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description)
+        let activity = Activity(id: trips[identifier.tripID].days[identifier.dateID!].activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description, url: url, address: address)
         trips[identifier.tripID].days[identifier.dateID!].activities.append(activity)
         
         //orders based on start time

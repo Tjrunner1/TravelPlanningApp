@@ -21,7 +21,6 @@ struct CalendarView: View {
                 Spacer()
             }
         }
-        
     }
 }
 
@@ -37,11 +36,12 @@ struct IndvidualDayView: View{
                     ForEach(TVM.trips[identifier.tripID].days){day in
                         if identifier.dateID == day.id{
                             ForEach(TVM.trips[identifier.tripID].days[(identifier.dateID!)].activities){activity in
-                                NavigationLink{
-                                    ActivityView()
+                                NavigationLink {
+//                                    self.identifier.activityID = activity.id
+                                    ActivityView(identifier: $identifier)
                                 } label: {
                                     ZStack{
-                                        Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame( height: 100)
+                                        Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame(height: 100)
                                         Text("\(activity.title)").foregroundColor(.black)
                                     }
                                 }
@@ -68,10 +68,27 @@ struct TagsView: View{
     }
     
     var body: some View{
+//        VStack{
+//            GeometryReader { gp in
+//                HStack{
+//                    ForEach(TVM.trips[identifier.tripID].days) { day in
+//                        Button{
+//                            identifier.dateID = day.id
+//                        } label: {
+//                            ZStack{
+//                                Rectangle().foregroundColor(Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+//                                Text(String(format: "%02d", day.id+1)).foregroundColor(.white)
+//                            }.frame(width: gp.size.width/6, height: gp.size.height/2)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        GeometryReader { gp in
         VStack{
-            GeometryReader { gp in
+                ForEach(0...Int(TVM.trips[identifier.tripID].days.count/5), id: \.self) { i in
                     HStack{
-                        ForEach(TVM.trips[identifier.tripID].days) { day in
+                        ForEach(createArrayOfDaysDisplay(i: i)) { day in
                             Button{
                                 identifier.dateID = day.id
                             } label: {
@@ -82,8 +99,22 @@ struct TagsView: View{
                             }
                         }
                     }
+                }
             }
         }
+    }
+    
+    func createArrayOfDaysDisplay(i: Int) -> [Day] {
+        let numberOfItemsPerRow = 5
+        var returnArray: [Day] = []
+        
+        for day in TVM.trips[identifier.tripID].days {
+            if day.id < numberOfItemsPerRow * (i+1) && day.id >= numberOfItemsPerRow * (i+1) - numberOfItemsPerRow {
+                returnArray.append(day)
+            }
+        }
+        
+        return returnArray
     }
 }
 

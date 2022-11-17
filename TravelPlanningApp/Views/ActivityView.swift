@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct ActivityView: View {
+    @EnvironmentObject var TVM: TripsViewModel
+    @Binding var identifier: Identifiers
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct ActivityView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityView()
+        VStack{
+            Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].title)
+            Text("Start Time: \(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].startTime)")
+            Text("End Time: \(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].endTime)")
+            if TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].description != nil {
+                Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].description!)
+            }
+            if TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].url != nil {
+                Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].url!)
+            }
+            if TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].address != nil {
+                Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].address!)
+            }
+        }
     }
 }
