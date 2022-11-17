@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    @Binding var identifier: Identifiers
+    var identifier: Identifiers
     
     var body: some View {
         VStack{
