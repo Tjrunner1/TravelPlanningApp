@@ -14,7 +14,7 @@ struct CalendarView: View {
     
     var body: some View {
         GeometryReader{ gp in
-            VStack{
+            VStack(alignment: .center){
                 TagsView(identifier: $identifier).frame(height: gp.size.height/4)
                 Divider()
                 if (identifier.dateID != nil) {

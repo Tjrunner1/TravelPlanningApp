@@ -22,10 +22,11 @@ struct AddTripView: View {
         VStack{
             Text("Create a Trip")
                 .font(.title)
-            HStack{
-                Text("Trip Name: ")
+            HStack(){
+                Text("Trip Name:        ")
                 TextField("Rome 2023", text: $tripName)
-            }.padding(10)
+                    .textFieldStyle(.roundedBorder)
+            }.frame(width: 250, alignment: .leading)
             DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
                 .frame(width: 250, alignment: .leading)
             DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
