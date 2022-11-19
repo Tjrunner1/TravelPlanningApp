@@ -25,16 +25,19 @@ struct AddActivityView: View {
     
         
         VStack{
-            Text("Add an event")
+            Text("Add an Event")
 //            Text("\(dateFormatter.string(from: Date(timeIntervalSinceReferenceDate:  TimeInterval(TVM.trips[identifier.tripID].days[identifier.dateID!].date))))")
         
             HStack{
-                Text("Event Title")
+                Text("Event Title:                 ")
                 TextField("Hike", text: $title)
-            }
+                    .textFieldStyle(.roundedBorder)
+            }.frame(width: 250, alignment: .center)
             
             DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
-            DatePicker("End Time", selection: $endTime, displayedComponents: [.hourAndMinute])
+                .frame(width: 250, alignment: .leading)
+            DatePicker("End Time", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
+                .frame(width: 250, alignment: .center)
             
             Button{
                 let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
