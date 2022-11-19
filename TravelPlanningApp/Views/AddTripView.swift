@@ -29,7 +29,7 @@ struct AddTripView: View {
             }.frame(width: 250, alignment: .leading)
             DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
                 .frame(width: 250, alignment: .leading)
-            DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
+            DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                 .frame(width: 250, alignment: .leading)
             Spacer(minLength: 2)
             Button {
