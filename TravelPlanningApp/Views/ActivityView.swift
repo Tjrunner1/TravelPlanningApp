@@ -14,6 +14,8 @@ struct ActivityView: View {
     var body: some View {
         VStack{
             Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].title)
+                .font(.title)
+            Spacer()
             Text("Start Time: \(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].startTime)")
             Text("End Time: \(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].endTime)")
             if TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].description != nil {
@@ -25,6 +27,7 @@ struct ActivityView: View {
             if TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].address != nil {
                 Text(TVM.trips[identifier.tripID].days[identifier.dateID!].activities[identifier.activityID!].address!)
             }
+            Spacer()
         }
     }
 }
