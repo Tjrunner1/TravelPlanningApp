@@ -46,7 +46,7 @@ class TripsViewModel: ObservableObject {
         trips[identifier.tripID].days[identifier.dateID!].activities.append(activity)
         
         //orders based on start time
-        trips[identifier.tripID].days[identifier.dateID!].activities.sort{$0.startTime < $1.startTime} //NOTE: May need to flip sign to make it order properly
+        trips[identifier.tripID].days[identifier.dateID!].activities.sort{$0.startTime < $1.startTime}
         
         //save the info to json
         writeToJSONFile()

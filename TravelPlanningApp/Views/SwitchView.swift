@@ -13,7 +13,7 @@ struct SwitchView: View {
     
     var body: some View {
         if (isCalendar) {
-            CalendarView(identifier: identifier!)//.sheet(item: identifier, content: <#T##(Identifiable) -> View#>)
+            CalendarView(identifier: identifier!)
         } else {
             AddTripView(isCalendar: $isCalendar, identifier: $identifier)
         }

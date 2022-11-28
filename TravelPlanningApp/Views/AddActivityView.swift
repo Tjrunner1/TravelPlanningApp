@@ -51,7 +51,7 @@ struct AddActivityView: View {
             Spacer()
             Button{
                 let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-                let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from:endTime)
+                let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
                 
                 TVM.addActivity(identifier: identifier, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description)
                 
