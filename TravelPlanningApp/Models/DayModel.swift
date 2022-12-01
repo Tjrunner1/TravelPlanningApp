@@ -7,8 +7,25 @@
 
 import Foundation
 
-struct Day: Decodable, Identifiable {
+class Day: Decodable, Identifiable, ObservableObject {
     var id: Int
-    var date: Double
-    var activities: [Activity]
+    @Published var date: Double
+    @Published var activities: [Activity]
+    
+    init(id: Int, date: Double, activities: [Activity]) {
+        self.id = id
+        self.date = date
+        self.activities = activities
+    }
+    
+    
+    private enum CodingKeys : String, CodingKey { case id, date, activities }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.date = try container.decode(Double.self, forKey: .date)
+        self.activities = try container.decode([Activity].self, forKey: .activities)
+    }
 }
+

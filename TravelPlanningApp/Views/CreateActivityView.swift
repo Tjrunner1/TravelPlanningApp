@@ -7,28 +7,19 @@
 
 import SwiftUI
 
-struct AddActivityView: View {
-    @EnvironmentObject var TVM: TripsViewModel
+struct CreateActivityView: View {
     @Environment(\.dismiss) private var dismiss
-    var identifier: Identifiers
+    @EnvironmentObject var TVM: TripsViewModel
+    @ObservedObject var day: Day
+    
     @State private var startTime = Date()
     @State private var endTime = Date()
     @State private var title: String = ""
-    let dateFormatter = DateFormatter()
     @State private var description = ""
-    
-    
-    init(identifier: Identifiers){
-        self.identifier = identifier
-        dateFormatter.dateStyle = .medium
-    }
 
     var body: some View {
-    
-        
-        
         VStack{
-            Text("\(dateFormatter.string(from: Date(timeIntervalSinceReferenceDate:  TimeInterval(TVM.trips[identifier.tripID].days[identifier.dateID!].date))))")
+            Text("\(applyDateFormat(timeStamp: day.date))")
                 .font(.title)
             Spacer()
         
@@ -53,7 +44,7 @@ struct AddActivityView: View {
                 let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
                 let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
                 
-                TVM.addActivity(identifier: identifier, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description)
+                TVM.addActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description)
                 
                 dismiss()
             }label:{
@@ -66,17 +57,15 @@ struct AddActivityView: View {
             }.padding()
             Spacer()
         }
-//        Button{
-//            let date = Date(timeIntervalSinceNow: TVM.trips[identifier.tripID].days[identifier.dateID!].date)
-//            let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-//            let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-//
-//            TVM.addActivity(identifier: identifier, title: "My Activity", startTimeComponents: startDateComponents, endTimeComponents: endDateComponents)
-//        } label: {
-//            Text("Click me to add an activity")
-//        }
+    }
+    
+    func applyDateFormat(timeStamp: Double) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         
-       
+        let timeInterval = TimeInterval(timeStamp)
+        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
         
+        return dateFormatter.string(from: date)
     }
 }

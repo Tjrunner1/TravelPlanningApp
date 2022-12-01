@@ -14,7 +14,7 @@ class TripsViewModel: ObservableObject {
         parseJSONFile()
     }
 
-    func addTrip(name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) -> Identifiers {
+    func addTrip(name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) -> Int {
         //convert Date Components to dates
         let startDate = Calendar.current.date(from: startDateComponents)!
         let endDate = Calendar.current.date(from: endDateComponents)!
@@ -28,32 +28,29 @@ class TripsViewModel: ObservableObject {
         }
 
         //Create the trip
-        let trip = Trip(id: trips.count, name: name, startDate: startDate.timeIntervalSinceReferenceDate, endDate: endDate.timeIntervalSinceReferenceDate, days: days)
-        trips.append(trip)
+        let newTrip = Trip(id: trips.count, name: name, startDate: startDate.timeIntervalSinceReferenceDate, endDate: endDate.timeIntervalSinceReferenceDate, days: days)
+        trips.append(newTrip)
 
         //save the info to json
         writeToJSONFile()
         
-        return Identifiers(tripID: trip.id)
+        return newTrip.id
     }
-
-    func addActivity(identifier: Identifiers, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String = "", url: String = "", address: String = "") -> Identifiers {
+    
+    func addActivity(day: Day, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String = "", url: String = "", address: String = "") {
         //convert Date Components to dates
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
 
-        let activity = Activity(id: trips[identifier.tripID].days[identifier.dateID!].activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description, url: url, address: address)
-        trips[identifier.tripID].days[identifier.dateID!].activities.append(activity)
-        
+        let activity = Activity(id: day.activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description, url: url, address: address)
+        day.activities.append(activity)
+
         //orders based on start time
-        trips[identifier.tripID].days[identifier.dateID!].activities.sort{$0.startTime < $1.startTime}
+        day.activities.sort{$0.startTime < $1.startTime}
         
         //save the info to json
         writeToJSONFile()
-        
-        return Identifiers(tripID: identifier.tripID, dateID: identifier.dateID, activityID: activity.id)
     }
-
 
     func parseJSONFile(){
         //parse the json file
@@ -93,6 +90,8 @@ class TripsViewModel: ObservableObject {
                     activityDict["startTime"] = NSNumber(value: activity.startTime)
                     activityDict["endTime"] = NSNumber(value: activity.endTime)
                     activityDict["description"] = NSString(utf8String: activity.description ?? "")
+                    activityDict["url"] = NSString(utf8String: activity.url ?? "")
+                    activityDict["address"] = NSString(utf8String: activity.address ?? "")
                     activities.append(activityDict as AnyObject)
                 }
                 dayDict["activities"] = activities as AnyObject
