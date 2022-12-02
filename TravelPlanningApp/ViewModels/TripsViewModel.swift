@@ -9,6 +9,9 @@ import Foundation
 
 class TripsViewModel: ObservableObject {
     @Published var trips = [Trip]()
+    var tripIDCounter = 0
+    var dayIDCounter = 0
+    var activityIDCounter = 0
 
     init() {
         parseJSONFile()
@@ -28,8 +31,9 @@ class TripsViewModel: ObservableObject {
         }
 
         //Create the trip
-        let newTrip = Trip(id: trips.count, name: name, startDate: startDate, endDate: endDate, days: days)
+        let newTrip = Trip(id: tripIDCounter, name: name, startDate: startDate, endDate: endDate, days: days)
         trips.append(newTrip)
+        tripIDCounter += 1
 
         //save the info to json
         writeToJSONFile()
@@ -42,8 +46,9 @@ class TripsViewModel: ObservableObject {
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
         
-        let activity = Activity(id: day.activities.count, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address)
+        let activity = Activity(id: activityIDCounter, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address)
         day.activities.append(activity)
+        activityIDCounter += 1
 
         //orders based on start time
         day.activities.sort{$0.startTime < $1.startTime}
@@ -65,11 +70,16 @@ class TripsViewModel: ObservableObject {
         activity.address = address == "" ? address : address
     }
     
-    func deleteActivity(day: Day, activityID: Int) {
-        for i in 0 ..< day.activities.count {
-            if day.activities[i].id == activityID {
-                day.activities.remove(at: i)
+    func deleteActivity(activity: Activity) {
+        for i in 0 ..< trips.count {
+            for j in 0 ..< trips[i].days.count {
+                for k in 0 ..< trips[i].days[j].activities.count {
+                    if trips[i].days[j].activities[k].id == activity.id {
+                        trips[i].days[j].activities.remove(at: k)
+                    }
+                }
             }
+            
         }
     }
 
