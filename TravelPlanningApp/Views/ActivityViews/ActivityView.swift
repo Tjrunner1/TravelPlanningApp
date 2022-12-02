@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @ObservedObject var activity: Activity
+    @EnvironmentObject var TVM: TripsViewModel
     
     var body: some View {
         VStack{
@@ -35,6 +36,12 @@ struct ActivityView: View {
                     Link("Open In Maps", destination: URL(string: activity.address!)!)
                 }
             }
+          
+            Button(action:{
+                TVM.deleteActivity(activity: activity)
+            }, label:{
+               Text("Delete Activity")
+            }).padding()
             Spacer()
         }
     }

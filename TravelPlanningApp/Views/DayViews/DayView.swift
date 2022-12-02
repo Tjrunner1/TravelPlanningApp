@@ -12,8 +12,8 @@ struct DayView: View {
 
     var body: some View{
         VStack{
-                Text("Activities")
-                    .font(.title)
+//                Text("Activities")
+//                    .font(.title)
                 VStack{
                     ForEach(day.activities){ activity in
                         NavigationLink {
@@ -32,17 +32,21 @@ struct DayView: View {
                         }
                     }
                 }
-            }
+                }
 
             NavigationLink{
                 CreateActivityView(day: day)
             } label: {
-                Image(systemName: "plus.circle")
-                    .resizable()
-                    .foregroundColor(Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .padding()
+                VStack{
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .foregroundColor(Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50, alignment: .center)
+                        .padding(.top)
+                    Text("Add Activity")
+                        .foregroundColor((Color(hue: 0.572, saturation: 0.792, brightness: 0.594)))
+                }
             }
         }
     }
