@@ -46,8 +46,8 @@ struct HomepageView: View {
                 }
             }.navigationTitle("My Trips")
                 .navigationBarTitleDisplayMode(.inline)
-                .background(alignment: .trailing, content:{
-                    Image("road").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea().opacity(0.5)
+                .background(alignment: .center, content:{
+                    Image("road").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea().opacity(0.65)
                 })
         }.navigationViewStyle(StackNavigationViewStyle())
     }

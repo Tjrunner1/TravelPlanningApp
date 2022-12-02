@@ -21,40 +21,42 @@ struct CreateActivityView: View {
 
     var body: some View {
         ScrollView{
-            VStack{
+            VStack(){
                 Text("\(applyDateFormat(date: day.date))")
                     .font(.title)
                 Spacer()
             
-                HStack{
+                VStack(alignment:.leading, spacing: 0){
                     Text("Event Title:                 ")
                     TextField("", text: $title)
                         .textFieldStyle(.roundedBorder)
+                        .border(.gray)
                 }.frame(width: 250, alignment: .center)
                 
-                DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
+                
+                    DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
                     .frame(width: 250, alignment: .leading)
                 DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
                     .frame(width: 250, alignment: .center)
-                HStack{
+                VStack(alignment: .leading, spacing: 0){
                     Text("Notes:                       ")
                     TextEditor(text: $description)
                         .border(.gray)
-                        .frame(height: 200)
+                        .frame(height: 75)
                 }.frame(width: 250, alignment: .center)
-                HStack{
-                    Text("Url:                       ")
+                VStack(alignment:.leading, spacing: 0){
+                    Text("URL:                       ")
                     TextField("https://www.google.com",text: $url)
+                        .textFieldStyle(.roundedBorder)
                         .border(.gray)
-                        .frame(height: 200)
                 }.frame(width: 250, alignment: .center)
-                HStack{
+                VStack(alignment:.leading, spacing: 0){
                     Text("Address:                       ")
                     TextEditor(text: $address)
                         .border(.gray)
-                        .frame(height: 200)
+                        .frame(height: 75)
                 }.frame(width: 250, alignment: .center)
-                Spacer()
+              
                 Button{
                     let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
                     let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
@@ -64,10 +66,13 @@ struct CreateActivityView: View {
                     dismiss()
                 }label:{
                     ZStack{
+                        Rectangle().fill(Color(hue: 0.294, saturation: 0.31, brightness: 0.661))
+                            .cornerRadius(12)
                         Text("Create activity")
+                            .foregroundColor(.white)
                             .padding()
-                            .border(.blue)
-                    }
+                            
+                    }.padding()
                     
                 }.padding()
             }
