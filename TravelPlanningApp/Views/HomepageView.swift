@@ -18,7 +18,7 @@ struct HomepageView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                Color(hue: 0.302, saturation: 0.184, brightness: 0.695).ignoresSafeArea()
+                //Color(hue: 0.302, saturation: 0.184, brightness: 0.695).ignoresSafeArea()
                 ScrollView{
                     VStack{
                         ForEach(TVM.trips) { trip in
@@ -36,7 +36,9 @@ struct HomepageView: View {
                         }
                     }
                 }
-            }.navigationTitle("My Trips").navigationBarTitleDisplayMode(.inline)
+            }.navigationTitle("My Trips")
+                .navigationBarTitleDisplayMode(.inline)
+                .background(Image("road").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea().opacity(0.5))
         }
     }
 }
