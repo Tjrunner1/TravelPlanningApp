@@ -21,65 +21,62 @@ struct CreateActivityView: View {
 
     var body: some View {
         ScrollView{
-        VStack{
-            Text("\(applyDateFormat(timeStamp: day.date))")
-                .font(.title)
-            Spacer()
-        
-            HStack{
-                Text("Event Title:                 ")
-                TextField("", text: $title)
-                    .textFieldStyle(.roundedBorder)
-            }.frame(width: 250, alignment: .center)
+            VStack{
+                Text("\(applyDateFormat(date: day.date))")
+                    .font(.title)
+                Spacer()
             
-            DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
-                .frame(width: 250, alignment: .leading)
-            DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
-                .frame(width: 250, alignment: .center)
-            HStack{
-                Text("Notes:                       ")
-                TextEditor(text: $description)
-                    .border(.gray)
-                    .frame(height: 200)
-            }.frame(width: 250, alignment: .center)
-            HStack{
-                Text("Url:                       ")
-                TextField("https://www.google.com",text: $url)
-                    .border(.gray)
-                    .frame(height: 200)
-            }.frame(width: 250, alignment: .center)
-            HStack{
-                Text("Address:                       ")
-                TextEditor(text: $address)
-                    .border(.gray)
-                    .frame(height: 200)
-            }.frame(width: 250, alignment: .center)
-            Spacer()
-            Button{
-                let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-                let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+                HStack{
+                    Text("Event Title:                 ")
+                    TextField("", text: $title)
+                        .textFieldStyle(.roundedBorder)
+                }.frame(width: 250, alignment: .center)
                 
-                TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
-                
-                dismiss()
-            }label:{
-                ZStack{
-                    Text("Create activity")
-                        .padding()
-                        .border(.blue)
-                }
-                
-            }.padding()
-        }
+                DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
+                    .frame(width: 250, alignment: .leading)
+                DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
+                    .frame(width: 250, alignment: .center)
+                HStack{
+                    Text("Notes:                       ")
+                    TextEditor(text: $description)
+                        .border(.gray)
+                        .frame(height: 200)
+                }.frame(width: 250, alignment: .center)
+                HStack{
+                    Text("Url:                       ")
+                    TextField("https://www.google.com",text: $url)
+                        .border(.gray)
+                        .frame(height: 200)
+                }.frame(width: 250, alignment: .center)
+                HStack{
+                    Text("Address:                       ")
+                    TextEditor(text: $address)
+                        .border(.gray)
+                        .frame(height: 200)
+                }.frame(width: 250, alignment: .center)
+                Spacer()
+                Button{
+                    let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+                    let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+                    
+                    TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
+                    
+                    dismiss()
+                }label:{
+                    ZStack{
+                        Text("Create activity")
+                            .padding()
+                            .border(.blue)
+                    }
+                    
+                }.padding()
+            }
         }
     }
     
-    func applyDateFormat(timeStamp: Double) -> String {
+    func applyDateFormat(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        
-        let timeInterval = TimeInterval(timeStamp)
-        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
         
         return dateFormatter.string(from: date)
     }

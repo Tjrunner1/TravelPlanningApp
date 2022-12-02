@@ -22,7 +22,7 @@ struct CalendarView: View {
                                 ZStack{
                                     Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
                                         .cornerRadius(10)
-                                    Text(applyDateFormat(timeStamp: day.date)).foregroundColor(.white)
+                                    Text(applyDateFormat(date: day.date)).foregroundColor(.white)
                                 }.frame(width: 50, height: 75)
                             }
                         }
@@ -47,12 +47,12 @@ struct CalendarView: View {
         return returnArray
     }
 
-    func applyDateFormat(timeStamp: Double) -> String {
+    func applyDateFormat(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d"
 
-        let timeInterval = TimeInterval(timeStamp)
-        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
+//        let timeInterval = TimeInterval(timeStamp)
+//        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
 
         return dateFormatter.string(from: date)
     }

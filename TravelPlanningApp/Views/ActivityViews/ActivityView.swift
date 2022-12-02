@@ -15,8 +15,8 @@ struct ActivityView: View {
             Text(activity.title)
                 .font(.title)
             Spacer()
-            Text("Start Time: \(applyDateFormat(timeStamp: activity.startTime))")
-            Text("End Time: \(applyDateFormat(timeStamp: activity.endTime))")
+            Text("Start Time: \(applyDateFormat(date: activity.startTime))")
+            Text("End Time: \(applyDateFormat(date: activity.endTime))")
             if activity.description != nil {
                 HStack{
                     Text("Description: ")
@@ -39,12 +39,12 @@ struct ActivityView: View {
         }
     }
     
-    func applyDateFormat(timeStamp: Double) -> String {
+    func applyDateFormat(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
 
-        let timeInterval = TimeInterval(timeStamp)
-        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
+//        let timeInterval = TimeInterval(timeStamp)
+//        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
 
         return dateFormatter.string(from: date)
     }

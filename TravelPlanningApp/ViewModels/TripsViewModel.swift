@@ -23,12 +23,12 @@ class TripsViewModel: ObservableObject {
         var days = [Day]()
         let numberOfDays: Int = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day! + 1
         for i in 0 ..< numberOfDays {
-            let day = Day(id: i, date: Calendar.current.date(byAdding: .day, value: i, to: startDate)!.timeIntervalSinceReferenceDate, activities: [Activity]())
+            let day = Day(id: i, date: Calendar.current.date(byAdding: .day, value: i, to: startDate)!, activities: [Activity]())
             days.append(day)
         }
 
         //Create the trip
-        let newTrip = Trip(id: trips.count, name: name, startDate: startDate.timeIntervalSinceReferenceDate, endDate: endDate.timeIntervalSinceReferenceDate, days: days)
+        let newTrip = Trip(id: trips.count, name: name, startDate: startDate, endDate: endDate, days: days)
         trips.append(newTrip)
 
         //save the info to json
@@ -42,7 +42,7 @@ class TripsViewModel: ObservableObject {
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
         
-        let activity = Activity(id: day.activities.count, title: title, startTime: startTime.timeIntervalSinceReferenceDate, endTime: endTime.timeIntervalSinceReferenceDate, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address)
+        let activity = Activity(id: day.activities.count, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address)
         day.activities.append(activity)
 
         //orders based on start time
@@ -58,17 +58,20 @@ class TripsViewModel: ObservableObject {
         let endTime = Calendar.current.date(from: endTimeComponents)!
         
         activity.title = title
-        activity.startTime = startTime.timeIntervalSinceReferenceDate
-        activity.endTime = endTime.timeIntervalSinceReferenceDate
+        activity.startTime = startTime
+        activity.endTime = endTime
         activity.description = description == "" ? nil : description
         activity.url = url == "" ? nil : url
         activity.address = address == "" ? address : address
     }
     
-//    func deleteActivity(activity: Activity) {
-//        activities.remove(at: activity.id)
-//    }
-    
+    func deleteActivity(day: Day, activityID: Int) {
+        for i in 0 ..< day.activities.count {
+            if day.activities[i].id == activityID {
+                day.activities.remove(at: i)
+            }
+        }
+    }
 
     func parseJSONFile(){
         //parse the json file
@@ -93,20 +96,20 @@ class TripsViewModel: ObservableObject {
             var tripDict: [String: AnyObject] = [:]
             tripDict["id"] = NSNumber(value: trip.id)
             tripDict["name"] = NSString(utf8String: trip.name)
-            tripDict["startDate"] = NSNumber(value: trip.startDate)
-            tripDict["endDate"] = NSNumber(value: trip.endDate)
+            tripDict["startDate"] = NSNumber(value: trip.startDate.timeIntervalSinceReferenceDate)
+            tripDict["endDate"] = NSNumber(value: trip.endDate.timeIntervalSinceReferenceDate)
             var days: [AnyObject] = []
             for day in trip.days {
                 var dayDict: [String: AnyObject] = [:]
                 dayDict["id"] = NSNumber(value: day.id)
-                dayDict["date"] = NSNumber(value: day.date)
+                dayDict["date"] = NSNumber(value: day.date.timeIntervalSinceReferenceDate)
                 var activities: [AnyObject] = []
                 for activity in day.activities {
                     var activityDict: [String: AnyObject] = [:]
                     activityDict["id"] = NSNumber(value: activity.id)
                     activityDict["title"] = NSString(utf8String: activity.title)
-                    activityDict["startTime"] = NSNumber(value: activity.startTime)
-                    activityDict["endTime"] = NSNumber(value: activity.endTime)
+                    activityDict["startTime"] = NSNumber(value: activity.startTime.timeIntervalSinceReferenceDate)
+                    activityDict["endTime"] = NSNumber(value: activity.endTime.timeIntervalSinceReferenceDate)
                     if activity.description != nil {
                         activityDict["description"] = NSString(utf8String: activity.description!)
                     }
