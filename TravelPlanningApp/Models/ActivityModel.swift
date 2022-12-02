@@ -16,11 +16,11 @@ class Activity: Decodable, Identifiable, ObservableObject {
     @Published var url: String?
     @Published var address: String?
     
-    init(id: Int, title: String, startTime: Double, endTime: Double, description: String = "", url: String = "", address: String = "") {
+    init(id: Int, title: String, startTime: Double, endTime: Double, description: String?, url: String?, address: String?) {
         self.id = id
         self.title = title
-        self.startTime = 0
-        self.endTime = 0
+        self.startTime = startTime
+        self.endTime = endTime
         self.description = description
         self.url = url
         self.address = address
@@ -35,8 +35,8 @@ class Activity: Decodable, Identifiable, ObservableObject {
         self.title = try container.decode(String.self, forKey: .title)
         self.startTime = try container.decode(Double.self, forKey: .startTime)
         self.endTime = try container.decode(Double.self, forKey: .endTime)
-        self.description = try container.decode(String.self, forKey: .description)
-        self.url = try container.decode(String.self, forKey: .url)
-        self.address = try container.decode(String.self, forKey: .address)
+        self.description = try? container.decode(String.self, forKey: .description)
+        self.url = try? container.decode(String.self, forKey: .url)
+        self.address = try? container.decode(String.self, forKey: .address)
     }
 }

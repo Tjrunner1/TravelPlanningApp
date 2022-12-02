@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Day: Decodable, Identifiable, ObservableObject {
     var id: Int

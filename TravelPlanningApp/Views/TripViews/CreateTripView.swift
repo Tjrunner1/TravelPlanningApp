@@ -35,7 +35,7 @@ struct CreateTripView: View {
                     let startDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
                     let endDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: endDate)
                     
-                    self.tripID = TVM.addTrip(name: tripName, startDateComponents: startDateComponents, endDateComponents: endDateComponents)
+                    self.tripID = TVM.createTrip(name: tripName, startDateComponents: startDateComponents, endDateComponents: endDateComponents)
                 } label: {
                     Text("Create Trip")
                     Image(systemName: "plus.circle").font(.title)

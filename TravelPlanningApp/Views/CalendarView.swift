@@ -12,30 +12,26 @@ struct CalendarView: View {
     @State var dayID: Int = 0
 
     var body: some View{
-//        GeometryReader { gp in
             VStack{
                 ForEach(0...Int(trip.days.count/5), id: \.self) { i in
                     HStack{
                         ForEach(createArrayOfDaysDisplay(i: i)) { day in
                             Button{
-                                dayID = day.id
+                                self.dayID = day.id
                             } label: {
                                 ZStack{
                                     Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
                                         .cornerRadius(10)
                                     Text(applyDateFormat(timeStamp: day.date)).foregroundColor(.white)
-                                }.frame(width: 25, height: 50)//.frame(width: gp.size.width/6, height: gp.size.height/CGFloat(trip.days.count % 5 + 1)) MAYBE USE alginemnt in frame?
+                                }.frame(width: 50, height: 75)
                             }
                         }
                     }
                 }
 
                 Divider()
-//                if (selectedDay != nil) {
-                    DayView(day: trip.days[dayID])
-//                }
+                DayView(day: trip.days[dayID])//.first(where: $0.id == dayID) ?? trip.days[0])
             }
-//        }
     }
 
     func createArrayOfDaysDisplay(i: Int) -> [Day] {

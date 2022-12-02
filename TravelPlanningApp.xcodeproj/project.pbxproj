@@ -10,17 +10,17 @@
 		1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED39291AB6D800DD99F7 /* TravelPlanningAppApp.swift */; };
 		1B08ED3E291AB6D900DD99F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B08ED3D291AB6D900DD99F7 /* Assets.xcassets */; };
 		1B08ED41291AB6D900DD99F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B08ED40291AB6D900DD99F7 /* Preview Assets.xcassets */; };
-		1B08ED4B291ABE0600DD99F7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */; };
 		1B08ED4D291ABE1E00DD99F7 /* CreateActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4C291ABE1E00DD99F7 /* CreateActivityView.swift */; };
 		1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4E291ABE3300DD99F7 /* HomepageView.swift */; };
 		1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED50291AC35E00DD99F7 /* ActivityView.swift */; };
 		1B281720291AE637001708F7 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28171F291AE637001708F7 /* TripModel.swift */; };
+		1B6BDA18293A620D00F62801 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */; };
 		1BB0468C291FE7EB00F8F949 /* CreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */; };
 		1BB04692292015EF00F8F949 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB04691292015EF00F8F949 /* DayModel.swift */; };
 		1BB046942920188300F8F949 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046932920188300F8F949 /* ActivityModel.swift */; };
-		1BB046BC29355D5800F8F949 /* TripContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BB29355D5800F8F949 /* TripContainerView.swift */; };
 		1BB046BE29355DBE00F8F949 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BD29355DBE00F8F949 /* TripView.swift */; };
 		1BB046C0293561E700F8F949 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BF293561E700F8F949 /* DayView.swift */; };
+		1BD690F9293975F700764EA7 /* CreateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD690F8293975F700764EA7 /* CreateDayView.swift */; };
 		1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +37,9 @@
 		1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripView.swift; sourceTree = "<group>"; };
 		1BB04691292015EF00F8F949 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		1BB046932920188300F8F949 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		1BB046BB29355D5800F8F949 /* TripContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripContainerView.swift; sourceTree = "<group>"; };
 		1BB046BD29355DBE00F8F949 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		1BB046BF293561E700F8F949 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		1BD690F8293975F700764EA7 /* CreateDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDayView.swift; sourceTree = "<group>"; };
 		1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,15 +113,39 @@
 			isa = PBXGroup;
 			children = (
 				1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */,
-				1B08ED4C291ABE1E00DD99F7 /* CreateActivityView.swift */,
 				1B08ED4E291ABE3300DD99F7 /* HomepageView.swift */,
-				1B08ED50291AC35E00DD99F7 /* ActivityView.swift */,
-				1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */,
-				1BB046BB29355D5800F8F949 /* TripContainerView.swift */,
-				1BB046BD29355DBE00F8F949 /* TripView.swift */,
-				1BB046BF293561E700F8F949 /* DayView.swift */,
+				1BD690F52939759700764EA7 /* TripViews */,
+				1BD690F7293975DB00764EA7 /* DayViews */,
+				1BD690F6293975B400764EA7 /* ActivityViews */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1BD690F52939759700764EA7 /* TripViews */ = {
+			isa = PBXGroup;
+			children = (
+				1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */,
+				1BB046BD29355DBE00F8F949 /* TripView.swift */,
+			);
+			path = TripViews;
+			sourceTree = "<group>";
+		};
+		1BD690F6293975B400764EA7 /* ActivityViews */ = {
+			isa = PBXGroup;
+			children = (
+				1B08ED4C291ABE1E00DD99F7 /* CreateActivityView.swift */,
+				1B08ED50291AC35E00DD99F7 /* ActivityView.swift */,
+			);
+			path = ActivityViews;
+			sourceTree = "<group>";
+		};
+		1BD690F7293975DB00764EA7 /* DayViews */ = {
+			isa = PBXGroup;
+			children = (
+				1BB046BF293561E700F8F949 /* DayView.swift */,
+				1BD690F8293975F700764EA7 /* CreateDayView.swift */,
+			);
+			path = DayViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,16 +219,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BB046942920188300F8F949 /* ActivityModel.swift in Sources */,
+				1BD690F9293975F700764EA7 /* CreateDayView.swift in Sources */,
 				1BB046C0293561E700F8F949 /* DayView.swift in Sources */,
 				1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */,
 				1B08ED4D291ABE1E00DD99F7 /* CreateActivityView.swift in Sources */,
 				1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */,
+				1B6BDA18293A620D00F62801 /* CalendarView.swift in Sources */,
 				1BB04692292015EF00F8F949 /* DayModel.swift in Sources */,
 				1B281720291AE637001708F7 /* TripModel.swift in Sources */,
-				1BB046BC29355D5800F8F949 /* TripContainerView.swift in Sources */,
 				1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */,
 				1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */,
-				1B08ED4B291ABE0600DD99F7 /* CalendarView.swift in Sources */,
 				1BB0468C291FE7EB00F8F949 /* CreateTripView.swift in Sources */,
 				1BB046BE29355DBE00F8F949 /* TripView.swift in Sources */,
 			);
