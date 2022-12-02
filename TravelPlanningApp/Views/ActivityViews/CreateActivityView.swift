@@ -16,8 +16,11 @@ struct CreateActivityView: View {
     @State private var endTime = Date()
     @State private var title: String = ""
     @State private var description = ""
+    @State private var url = ""
+    @State private var address = ""
 
     var body: some View {
+        ScrollView{
         VStack{
             Text("\(applyDateFormat(timeStamp: day.date))")
                 .font(.title)
@@ -39,12 +42,24 @@ struct CreateActivityView: View {
                     .border(.gray)
                     .frame(height: 200)
             }.frame(width: 250, alignment: .center)
+            HStack{
+                Text("Url:                       ")
+                TextField("https://www.google.com",text: $url)
+                    .border(.gray)
+                    .frame(height: 200)
+            }.frame(width: 250, alignment: .center)
+            HStack{
+                Text("Address:                       ")
+                TextEditor(text: $address)
+                    .border(.gray)
+                    .frame(height: 200)
+            }.frame(width: 250, alignment: .center)
             Spacer()
             Button{
                 let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
                 let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
                 
-                TVM.addActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description)
+                TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
                 
                 dismiss()
             }label:{
@@ -55,7 +70,7 @@ struct CreateActivityView: View {
                 }
                 
             }.padding()
-            Spacer()
+        }
         }
     }
     
