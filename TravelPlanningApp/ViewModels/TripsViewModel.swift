@@ -96,6 +96,13 @@ class TripsViewModel: ObservableObject {
         writeToJSONFile()
     }
     
+    func updateActTitle(activity: Activity, title: String?){
+        if (title != nil){
+            activity.title = title!
+            writeToJSONFile()
+        }
+    }
+    
     func editActivity(activity: Activity, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?) {
         //convert Date Components to dates
         let startTime = Calendar.current.date(from: startTimeComponents)!

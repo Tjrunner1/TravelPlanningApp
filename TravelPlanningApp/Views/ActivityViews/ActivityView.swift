@@ -11,7 +11,10 @@ struct ActivityView: View {
     @ObservedObject var activity: Activity
     @EnvironmentObject var TVM: TripsViewModel
     
+   
+    
     var body: some View {
+       
         VStack(alignment: .leading){
             Text(activity.title)
                 .font(.title)
