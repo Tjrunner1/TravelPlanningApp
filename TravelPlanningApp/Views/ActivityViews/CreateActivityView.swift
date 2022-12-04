@@ -77,10 +77,13 @@ struct CreateActivityView: View {
                         }
                     }
                     
+//                    IDK WHAT THESE ARE
+//                    Button{
+//                VStack(alignment:.leading, spacing: 0){
+//                    Text("Images:")
+            
+                    
                     Button{
-                VStack(alignment:.leading, spacing: 0){
-                    Text("Images:")
-                    Button(action: {
                         self.isShowPhotoLibrary = true
                     } label: {
                         HStack {
