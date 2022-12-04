@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class TripsViewModel: ObservableObject {
     @Published var trips = [Trip]()
@@ -80,12 +81,13 @@ class TripsViewModel: ObservableObject {
         writeToJSONFile()
     }
     
-    func createActivity(day: Day, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?) {
+    func createActivity(day: Day, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
         //convert Date Components to dates
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
         
-        let activity = Activity(id: activityIDCounter, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address)
+        //create the activity
+        let activity = Activity(id: activityIDCounter, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address, attachments: attachments?.count == 0 ? nil : attachments)
         day.activities.append(activity)
         activityIDCounter += 1
 
@@ -94,6 +96,7 @@ class TripsViewModel: ObservableObject {
         
         //save the info to json
         writeToJSONFile()
+        addImagesToFilePath(activity: activity)
     }
     
     func editActivity(activity: Activity, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?) {
@@ -143,6 +146,20 @@ class TripsViewModel: ObservableObject {
                 print(error)
             }
         }
+        
+        
+        for i in 0 ..< trips.count {
+            if trips[i].id >= tripIDCounter {
+                tripIDCounter = trips[i].id + 1
+            }
+            for j in 0 ..< trips[i].days.count {
+                for k in 0 ..< trips[i].days[j].activities.count {
+                    if trips[i].days[j].activities[k].id >= activityIDCounter {
+                        activityIDCounter = trips[i].days[j].activities[k].id + 1
+                    }
+                }
+            }
+        }
     }
 
     func writeToJSONFile(){
@@ -175,6 +192,14 @@ class TripsViewModel: ObservableObject {
                     if activity.address != nil {
                         activityDict["address"] = NSString(utf8String: activity.address!)
                     }
+                    if activity.attachments != nil {
+                        var attachmentArray: [String] = []
+                        for i in 0 ..< activity.attachments!.count {
+                            let string = NSString(utf8String: "\(activity.id)_\(i).png")
+                            attachmentArray.append(string! as String)
+                        }
+                        activityDict["attachments"] = attachmentArray as AnyObject
+                    }
                     activities.append(activityDict as AnyObject)
                 }
                 dayDict["activities"] = activities as AnyObject
@@ -191,6 +216,22 @@ class TripsViewModel: ObservableObject {
                 let url = documentDirectory.appendingPathComponent("Trips.json")
                 try jsonData.write(to: url)
                 print(url)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func addImagesToFilePath(activity: Activity) {
+        do {
+            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                for i in 0 ..< (activity.attachments?.count ?? 0) {
+                    if let data = activity.attachments![i].pngData() {
+                        let url = documentDirectory.appendingPathComponent("\(activity.id)_\(i).png")
+                        
+                        try data.write(to: url)
+                    }
+                }
             }
         } catch {
             print(error)

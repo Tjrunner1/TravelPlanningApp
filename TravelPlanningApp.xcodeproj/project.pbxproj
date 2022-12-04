@@ -17,6 +17,8 @@
 		1B6BDA18293A620D00F62801 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B08ED4A291ABE0600DD99F7 /* CalendarView.swift */; };
 		1B8E96D6293C0511008E0F09 /* EditActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96D5293C0511008E0F09 /* EditActivityView.swift */; };
 		1B8E96DA293C33C5008E0F09 /* ImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96D9293C33C5008E0F09 /* ImagePickerModel.swift */; };
+		1B8E96DE293CF2E4008E0F09 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */; };
+		1B8E96E0293D210E008E0F09 /* EditAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */; };
 		1BB0468C291FE7EB00F8F949 /* CreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */; };
 		1BB04692292015EF00F8F949 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB04691292015EF00F8F949 /* DayModel.swift */; };
 		1BB046942920188300F8F949 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046932920188300F8F949 /* ActivityModel.swift */; };
@@ -38,6 +40,8 @@
 		1B28171F291AE637001708F7 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		1B8E96D5293C0511008E0F09 /* EditActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivityView.swift; sourceTree = "<group>"; };
 		1B8E96D9293C33C5008E0F09 /* ImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerModel.swift; sourceTree = "<group>"; };
+		1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAttachmentView.swift; sourceTree = "<group>"; };
 		1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripView.swift; sourceTree = "<group>"; };
 		1BB04691292015EF00F8F949 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		1BB046932920188300F8F949 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				1BD690F52939759700764EA7 /* TripViews */,
 				1BD690F7293975DB00764EA7 /* DayViews */,
 				1BD690F6293975B400764EA7 /* ActivityViews */,
+				1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */,
+				1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,10 +234,12 @@
 				1BD690F9293975F700764EA7 /* CreateDayView.swift in Sources */,
 				1BB046C0293561E700F8F949 /* DayView.swift in Sources */,
 				1B8E96DA293C33C5008E0F09 /* ImagePickerModel.swift in Sources */,
+				1B8E96E0293D210E008E0F09 /* EditAttachmentView.swift in Sources */,
 				1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */,
 				1B08ED4D291ABE1E00DD99F7 /* CreateActivityView.swift in Sources */,
 				1B8E96D6293C0511008E0F09 /* EditActivityView.swift in Sources */,
 				1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */,
+				1B8E96DE293CF2E4008E0F09 /* AttachmentView.swift in Sources */,
 				1B6BDA18293A620D00F62801 /* CalendarView.swift in Sources */,
 				1BB04692292015EF00F8F949 /* DayModel.swift in Sources */,
 				1B281720291AE637001708F7 /* TripModel.swift in Sources */,
