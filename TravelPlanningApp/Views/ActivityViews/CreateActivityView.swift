@@ -18,10 +18,12 @@ struct CreateActivityView: View {
     @State private var description = ""
     @State private var url = ""
     @State private var address = ""
+    @State private var isShowPhotoLibrary = false
+    @State private var image = UIImage()
 
     var body: some View {
         ScrollView{
-            VStack(){
+            VStack{
                 Text("\(applyDateFormat(date: day.date))")
                     .font(.title)
                 Spacer()
@@ -56,10 +58,27 @@ struct CreateActivityView: View {
                         .border(.gray)
                         .frame(height: 75)
                 }.frame(width: 250, alignment: .center)
+                
+                Button(action: {
+                    self.isShowPhotoLibrary = true
+                }) {
+                    HStack {
+                        Image(systemName: "photo")
+                            .font(.system(size: 20))
+                            
+                        Text("Photo library")
+                            .font(.headline)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+                    .padding(.horizontal)
+                }
               
                 Button{
-                    let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-                    let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+                    let startTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: startTime)
+                    let endTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: endTime)
                     
                     TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
                     
@@ -76,6 +95,8 @@ struct CreateActivityView: View {
                     
                 }.padding()
             }
+        }.sheet(isPresented: $isShowPhotoLibrary) {
+            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
         }
     }
     

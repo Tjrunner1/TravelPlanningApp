@@ -30,7 +30,7 @@ struct CalendarView: View {
                 }
 
                 Divider()
-                DayView(day: trip.days[dayID])//.first(where: $0.id == dayID) ?? trip.days[0])
+                DayView(day: trip.days[dayID])
             }
     }
 

@@ -31,7 +31,7 @@ struct ActivityView: View {
                 HStack{
                     Image(systemName: "link")
                     Text("Link: ").frame(alignment: .leading)
-                    Link(activity.url!, destination: URL(string: activity.url!)!)
+                    Link(activity.url!, destination: URL(string: activity.url!) ?? URL(string: "https://www.google.com")!)
                 }.padding()
                 Divider().padding(.horizontal)
             }
@@ -39,7 +39,7 @@ struct ActivityView: View {
                 HStack{
                     Image(systemName: "map")
                     Text("Address: ")
-                    Link(activity.address!, destination: URL(string: activity.address!)!)
+                    Link(activity.address!, destination: URL(string: activity.address!) ?? URL(string: "https://www.google.com")!)
                 }.padding()
             }
          Spacer()
@@ -60,10 +60,7 @@ struct ActivityView: View {
     func applyDateFormat(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
-
-//        let timeInterval = TimeInterval(timeStamp)
-//        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
-
+        
         return dateFormatter.string(from: date)
     }
 }

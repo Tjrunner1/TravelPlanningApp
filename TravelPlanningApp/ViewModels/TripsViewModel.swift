@@ -10,7 +10,6 @@ import Foundation
 class TripsViewModel: ObservableObject {
     @Published var trips = [Trip]()
     var tripIDCounter = 0
-    var dayIDCounter = 0
     var activityIDCounter = 0
 
     init() {
@@ -41,6 +40,46 @@ class TripsViewModel: ObservableObject {
         return newTrip.id
     }
     
+    func editTrip(trip: Trip, name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) {
+        //convert Date Components to dates
+        let startDate = Calendar.current.date(from: startDateComponents)!
+        let endDate = Calendar.current.date(from: endDateComponents)!
+        
+        //Create each day in the trip
+        var days = [Day]()
+        let numberOfDays: Int = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day! + 1
+        for i in 0 ..< numberOfDays {
+            let day = Day(id: i, date: Calendar.current.date(byAdding: .day, value: i, to: startDate)!, activities: [Activity]())
+            for oldDay in trip.days {
+                if oldDay.date == day.date {
+                    day.activities = oldDay.activities
+                }
+            }
+            days.append(day)
+        }
+        
+        //update data
+        trip.name = name
+        trip.startDate = startDate
+        trip.endDate = endDate
+        trip.days = days
+        
+        //save the info to json
+        writeToJSONFile()
+    }
+    
+    func deleteTrip(trip: Trip) {
+        for i in 0 ..< trips.count {
+            if trips[i].id == trip.id {
+                trips.remove(at: i)
+                return
+            }
+        }
+        
+        //save the info to json
+        writeToJSONFile()
+    }
+    
     func createActivity(day: Day, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?) {
         //convert Date Components to dates
         let startTime = Calendar.current.date(from: startTimeComponents)!
@@ -62,12 +101,16 @@ class TripsViewModel: ObservableObject {
         let startTime = Calendar.current.date(from: startTimeComponents)!
         let endTime = Calendar.current.date(from: endTimeComponents)!
         
+        //update data
         activity.title = title
         activity.startTime = startTime
         activity.endTime = endTime
         activity.description = description == "" ? nil : description
         activity.url = url == "" ? nil : url
         activity.address = address == "" ? address : address
+        
+        //save the info to json
+        writeToJSONFile()
     }
     
     func deleteActivity(activity: Activity) {
@@ -76,11 +119,14 @@ class TripsViewModel: ObservableObject {
                 for k in 0 ..< trips[i].days[j].activities.count {
                     if trips[i].days[j].activities[k].id == activity.id {
                         trips[i].days[j].activities.remove(at: k)
+                        return
                     }
                 }
             }
-            
         }
+        
+        //save the info to json
+        writeToJSONFile()
     }
 
     func parseJSONFile(){
