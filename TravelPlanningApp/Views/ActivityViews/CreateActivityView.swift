@@ -58,24 +58,25 @@ struct CreateActivityView: View {
                         .border(.gray)
                         .frame(height: 75)
                 }.frame(width: 250, alignment: .center)
-                
-                Button(action: {
-                    self.isShowPhotoLibrary = true
-                }) {
-                    HStack {
-                        Image(systemName: "photo")
-                            .font(.system(size: 20))
-                            
-                        Text("Photo library")
-                            .font(.headline)
+                VStack(alignment:.leading, spacing: 0){
+                    Text("Images:")
+                    Button(action: {
+                        self.isShowPhotoLibrary = true
+                    }) {
+                        
+                        HStack {
+                            Image(systemName: "photo")
+                                .font(.system(size: 20))
+                                
+                            Text("Photo library")
+                                .font(.callout)
+                        }
+                        .frame(minWidth: 250, minHeight: 30, maxHeight: 50)
+                       // .background(Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
+                        //.foregroundColor(.white)
+                        .border(.gray)
                     }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
-                    .padding(.horizontal)
                 }
-              
                 Button{
                     let startTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: startTime)
                     let endTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: endTime)
