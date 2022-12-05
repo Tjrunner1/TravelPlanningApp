@@ -17,10 +17,10 @@ class TripsViewModel: ObservableObject {
         parseJSONFile()
     }
 
-    func createTrip(name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) -> Int {
-        //convert Date Components to dates
-        let startDate = Calendar.current.date(from: startDateComponents)!
-        let endDate = Calendar.current.date(from: endDateComponents)!
+    func createTrip(name: String, startDate: Date, endDate: Date) -> Int {
+        //Get percise date
+        let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: startDate))!
+        let endDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: endDate))!
 
         //Create each day in the trip
         var days = [Day]()
@@ -41,10 +41,10 @@ class TripsViewModel: ObservableObject {
         return newTrip.id
     }
     
-    func editTrip(trip: Trip, name: String, startDateComponents: DateComponents, endDateComponents: DateComponents) {
-        //convert Date Components to dates
-        let startDate = Calendar.current.date(from: startDateComponents)!
-        let endDate = Calendar.current.date(from: endDateComponents)!
+    func editTrip(trip: Trip, name: String, startDate: Date, endDate: Date) {
+        //Get percise date
+        let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: startDate))!
+        let endDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: endDate))!
         
         //Create each day in the trip
         var days = [Day]()
@@ -81,10 +81,10 @@ class TripsViewModel: ObservableObject {
         writeToJSONFile()
     }
     
-    func createActivity(day: Day, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
-        //convert Date Components to dates
-        let startTime = Calendar.current.date(from: startTimeComponents)!
-        let endTime = Calendar.current.date(from: endTimeComponents)!
+    func createActivity(day: Day, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
+        //Get percise date
+        let startTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: startTime))!
+        let endTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endTime))!
         
         //create the activity
         let activity = Activity(id: activityIDCounter, title: title, startTime: startTime, endTime: endTime, description: description == "" ? nil : description, url: url == "" ? nil : url, address: address == "" ? nil : address, attachments: attachments?.count == 0 ? nil : attachments)
@@ -99,10 +99,10 @@ class TripsViewModel: ObservableObject {
         addImagesToFilePath(activity: activity)
     }
     
-    func editActivity(activity: Activity, title: String, startTimeComponents: DateComponents, endTimeComponents: DateComponents, description: String?, url: String?, address: String?) {
-        //convert Date Components to dates
-        let startTime = Calendar.current.date(from: startTimeComponents)!
-        let endTime = Calendar.current.date(from: endTimeComponents)!
+    func editActivity(activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?) {
+        //Get percise date
+        let startTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: startTime))!
+        let endTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endTime))!
         
         //update data
         activity.title = title

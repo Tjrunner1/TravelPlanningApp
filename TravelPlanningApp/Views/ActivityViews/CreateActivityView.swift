@@ -100,10 +100,7 @@ struct CreateActivityView: View {
                     }
                 }
                 Button{
-                    let startTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: startTime)
-                    let endTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: endTime)
-                    
-                    TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address, attachments: images)
+                    TVM.createActivity(day: day, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: images)
                     
                     dismiss()
                 } label:{
