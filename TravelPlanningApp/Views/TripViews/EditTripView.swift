@@ -20,7 +20,7 @@ struct EditTripView: View {
     var body: some View {
         
         VStack{
-            TextField(trip.name, text: $name).frame(width: width/5, alignment: .center).font(.system(.title, design: .rounded))
+            TextField(trip.name, text: $name).frame(width: width/4, alignment: .center).font(.system(.title, design: .rounded))
             DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
             
