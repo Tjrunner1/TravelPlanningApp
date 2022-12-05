@@ -42,10 +42,10 @@ struct EditActivityView: View {
             TextField(address, text: $address)
          
             Button{
-//                let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-//                let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+                //let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+                //let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
                 
-                TVM.editActivity(activity: activity, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
+                TVM.editActivity(activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address)
                 
                 dismiss()
             } label: {
