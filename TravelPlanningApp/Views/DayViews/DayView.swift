@@ -19,7 +19,7 @@ struct DayView: View {
                         NavigationLink {
                             ActivityView(activity: activity).toolbar{ToolbarItem{
                                 NavigationLink{
-                                    EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "")
+                                    EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url:activity.url ?? "", address: activity.address ?? "")
                                 } label: {
                                     Image(systemName: "pencil")
                                 }
