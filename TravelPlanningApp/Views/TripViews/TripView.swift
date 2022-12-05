@@ -20,7 +20,7 @@ struct TripView: View {
             }
         }.toolbar{ToolbarItem{
             NavigationLink{
-                EditTripView()
+                EditTripView(trip: trip, name: trip.name, startDate: trip.startDate, endDate: trip.endDate)
             } label: {
                 Image(systemName: "pencil")
             }
