@@ -110,7 +110,7 @@ class TripsViewModel: ObservableObject {
         activity.endTime = endTime
         activity.description = description == "" ? nil : description
         activity.url = url == "" ? nil : url
-        activity.address = address == "" ? address : address
+        activity.address = address == "" ? nil : address
         
         //save the info to json
         writeToJSONFile()

@@ -11,28 +11,30 @@ struct CalendarView: View {
     @ObservedObject var trip: Trip
     @State var dayID: Int = 0
     var numberOfItemsPerRow = 7
-
+    var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
+    
     var body: some View{
-            VStack{
-                ForEach(0...Int(trip.days.count/numberOfItemsPerRow), id: \.self) { i in
-                    HStack{
-                        ForEach(createArrayOfDaysDisplay(i: i)) { day in
-                            Button{
-                                self.dayID = day.id
-                            } label: {
-                                ZStack{
-                                    Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
-                                        .cornerRadius(10)
-                                    Text(applyDateFormat(date: day.date)).foregroundColor(.white)
-                                }.frame(width: 35, height: 50)
-                            }
+        VStack{
+            ForEach(0...Int(trip.days.count/numberOfItemsPerRow), id: \.self) { i in
+                HStack{
+                    ForEach(createArrayOfDaysDisplay(i: i)) { day in
+                        Button{
+                            self.dayID = day.id
+                        } label: {
+                            ZStack{
+                                Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+                                    .cornerRadius(10)
+                                Text(applyDateFormat(date: day.date)).foregroundColor(.white)
+                            }.frame(width: width/CGFloat((numberOfItemsPerRow + 2)), height: height/12)
                         }
                     }
                 }
-
-                Divider()
-                DayView(day: trip.days[dayID])
             }
+
+            Divider()
+            DayView(day: trip.days[dayID])
+        }
     }
 
     func createArrayOfDaysDisplay(i: Int) -> [Day] {

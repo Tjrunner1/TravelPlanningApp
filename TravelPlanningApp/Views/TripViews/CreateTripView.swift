@@ -15,6 +15,7 @@ struct CreateTripView: View {
     @State private var startDate = Date()
     @State private var endDate = Date()
     
+    var width = UIScreen.main.bounds.width
     
     var body: some View {
         if (tripID == nil) {
@@ -25,11 +26,11 @@ struct CreateTripView: View {
                     Text("Trip Name:        ")
                     TextField("Rome 2023", text: $tripName)
                         .textFieldStyle(.roundedBorder)
-                }.frame(width: 250, alignment: .leading)
+                }.frame(width: width/1.3, alignment: .leading)
                 DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
-                    .frame(width: 250, alignment: .leading)
+                    .frame(width: width/1.3, alignment: .leading)
                 DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
-                    .frame(width: 250, alignment: .leading)
+                    .frame(width: width/1.3, alignment: .leading)
                 Spacer(minLength: 2)
                 Button {
                     self.tripID = TVM.createTrip(name: tripName, startDate: startDate, endDate: endDate)

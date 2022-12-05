@@ -13,6 +13,8 @@ struct ActivityView: View {
     @State private var isShowAttachment = false
     @State var imageIndex = 0
     
+    var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
    
     
     var body: some View {
@@ -57,7 +59,7 @@ struct ActivityView: View {
                             Image(uiImage: activity.attachments![i])
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50, alignment: .center)
+                                .frame(width: width/12, height: height/12, alignment: .center)
                                 .padding()
                         }
                     }
@@ -69,7 +71,7 @@ struct ActivityView: View {
             }, label:{
                 ZStack{
                     Rectangle().fill(Color(hue: 1, saturation: 0.37, brightness: 0.85)).cornerRadius(12).padding()
-                        .frame(height: 100)
+                        .frame(height: height/6)
                     Text("Delete Activity")
                         .foregroundColor(.white)
                 }

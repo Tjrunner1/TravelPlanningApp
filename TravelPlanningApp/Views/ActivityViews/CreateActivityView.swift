@@ -22,6 +22,9 @@ struct CreateActivityView: View {
     @State private var isShowAttachment = false
     @State private var images = [UIImage]()
     @State var imageIndex = 0
+    
+    var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
 
     var body: some View {
         ScrollView{
@@ -35,31 +38,30 @@ struct CreateActivityView: View {
                     TextField("", text: $title)
                         .textFieldStyle(.roundedBorder)
                         .border(.gray)
-                }.frame(width: 250, alignment: .center)
-                
+                }.frame(width: width/1.3, alignment: .center)
                 
                     DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
-                    .frame(width: 250, alignment: .leading)
+                    .frame(width: width/1.3, alignment: .leading)
                 DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
-                    .frame(width: 250, alignment: .center)
+                    .frame(width: width/1.3, alignment: .center)
                 VStack(alignment: .leading, spacing: 0){
                     Text("Notes:                       ")
                     TextEditor(text: $description)
                         .border(.gray)
-                        .frame(height: 75)
-                }.frame(width: 250, alignment: .center)
+                        .frame(height: height/6)
+                }.frame(width: width/1.3, alignment: .center)
                 VStack(alignment:.leading, spacing: 0){
                     Text("URL:                       ")
                     TextField("https://www.google.com",text: $url)
                         .textFieldStyle(.roundedBorder)
                         .border(.gray)
-                }.frame(width: 250, alignment: .center)
+                }.frame(width: width/1.3, alignment: .center)
                 VStack(alignment:.leading, spacing: 0){
                     Text("Address:                       ")
-                    TextEditor(text: $address)
+                    TextField("Copy Maps Address Here",text: $url)
+                        .textFieldStyle(.roundedBorder)
                         .border(.gray)
-                        .frame(height: 75)
-                }.frame(width: 250, alignment: .center)
+                }.frame(width: width/1.3, alignment: .center)
                 
                 Group{
                     HStack{
@@ -71,17 +73,11 @@ struct CreateActivityView: View {
                                 Image(uiImage: images[i])
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .frame(width: width/12, height: height/12, alignment: .center)
                                     .padding()
                             }
                         }
                     }
-                    
-//                    IDK WHAT THESE ARE
-//                    Button{
-//                VStack(alignment:.leading, spacing: 0){
-//                    Text("Images:")
-            
                     
                     Button{
                         self.isShowPhotoLibrary = true
@@ -93,9 +89,7 @@ struct CreateActivityView: View {
                             Text("Photo library")
                                 .font(.callout)
                         }
-                        .frame(minWidth: 250, minHeight: 30, maxHeight: 50)
-                       // .background(Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
-                        //.foregroundColor(.white)
+                        .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
                         .border(.gray)
                     }
                 }
