@@ -18,6 +18,13 @@ struct EditActivityView: View {
     @State var description: String
     @State var url: String
     @State var address: String
+    @State var attachments: [UIImage]
+    
+    var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
+    @State private var isShowAttachment = false
+    @State var imageIndex = 0
+    
 
     
     var body: some View {
@@ -40,6 +47,24 @@ struct EditActivityView: View {
             
             //ADDRESS
             TextField(address, text: $address)
+            
+            //IMAGES
+            if activity.attachments != nil {
+                HStack{
+                    ForEach(activity.attachments!.indices, id: \.self) { i in
+                        Button{
+                            self.imageIndex = i
+                            self.isShowAttachment = true
+                        } label: {
+                            Image(uiImage: activity.attachments![i])
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: width/12, height: height/12, alignment: .center)
+                                .padding()
+                        }
+                    }
+                }
+            }
          
             Button{
                 TVM.editActivity(activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address)
@@ -48,6 +73,8 @@ struct EditActivityView: View {
             } label: {
                 Text("Update Activity")
             }
+        }.sheet(isPresented: $isShowAttachment) {
+            EditAttachmentView(images: $attachments, isShowAttachment: $isShowAttachment, index: imageIndex)
         }
         
     }

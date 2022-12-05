@@ -78,9 +78,10 @@ struct ActivityView: View {
             }).padding()
         }.sheet(isPresented: $isShowAttachment) {
             AttachmentView(selectedImage: activity.attachments![imageIndex])
+            
         }.toolbar{ToolbarItem{
             NavigationLink{
-                EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "")
+                EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "", attachments: activity.attachments!)
             } label: {
                 Image(systemName: "pencil")
             }
