@@ -10,6 +10,8 @@ import SwiftUI
 struct ActivityView: View {
     @ObservedObject var activity: Activity
     @EnvironmentObject var TVM: TripsViewModel
+    @State private var isShowAttachment = false
+    @State var imageIndex = 0
     
    
     
@@ -45,6 +47,22 @@ struct ActivityView: View {
                     Link(activity.address!, destination: URL(string: activity.address!) ?? URL(string: "https://www.google.com")!)
                 }.padding()
             }
+            if activity.attachments != nil {
+                HStack{
+                    ForEach(activity.attachments!.indices, id: \.self) { i in
+                        Button{
+                            self.imageIndex = i
+                            self.isShowAttachment = true
+                        } label: {
+                            Image(uiImage: activity.attachments![i])
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .padding()
+                        }
+                    }
+                }
+            }
          Spacer()
             Button(action:{
                 TVM.deleteActivity(activity: activity)
@@ -56,8 +74,15 @@ struct ActivityView: View {
                         .foregroundColor(.white)
                 }
             }).padding()
-            
-        }
+        }.sheet(isPresented: $isShowAttachment) {
+            AttachmentView(selectedImage: activity.attachments![imageIndex])
+        }.toolbar{ToolbarItem{
+            NavigationLink{
+                EditActivityView(activity: activity)
+            } label: {
+                Image(systemName: "pencil")
+            }
+        }}
     }
     
     func applyDateFormat(date: Date) -> String {

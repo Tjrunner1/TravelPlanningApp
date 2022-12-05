@@ -10,10 +10,11 @@ import SwiftUI
 struct CalendarView: View {
     @ObservedObject var trip: Trip
     @State var dayID: Int = 0
+    var numberOfItemsPerRow = 7
 
     var body: some View{
             VStack{
-                ForEach(0...Int(trip.days.count/5), id: \.self) { i in
+                ForEach(0...Int(trip.days.count/numberOfItemsPerRow), id: \.self) { i in
                     HStack{
                         ForEach(createArrayOfDaysDisplay(i: i)) { day in
                             Button{
@@ -23,7 +24,7 @@ struct CalendarView: View {
                                     Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
                                         .cornerRadius(10)
                                     Text(applyDateFormat(date: day.date)).foregroundColor(.white)
-                                }.frame(width: 50, height: 75)
+                                }.frame(width: 35, height: 50)
                             }
                         }
                     }
@@ -35,7 +36,6 @@ struct CalendarView: View {
     }
 
     func createArrayOfDaysDisplay(i: Int) -> [Day] {
-        let numberOfItemsPerRow = 5
         var returnArray: [Day] = []
 
         for day in trip.days {
@@ -50,9 +50,6 @@ struct CalendarView: View {
     func applyDateFormat(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d"
-
-//        let timeInterval = TimeInterval(timeStamp)
-//        let date = Date(timeIntervalSinceReferenceDate: timeInterval)
 
         return dateFormatter.string(from: date)
     }

@@ -19,7 +19,9 @@ struct CreateActivityView: View {
     @State private var url = ""
     @State private var address = ""
     @State private var isShowPhotoLibrary = false
-    @State private var image = UIImage()
+    @State private var isShowAttachment = false
+    @State private var images = [UIImage]()
+    @State var imageIndex = 0
 
     var body: some View {
         ScrollView{
@@ -58,12 +60,32 @@ struct CreateActivityView: View {
                         .border(.gray)
                         .frame(height: 75)
                 }.frame(width: 250, alignment: .center)
-                VStack(alignment:.leading, spacing: 0){
-                    Text("Images:")
-                    Button(action: {
+                
+                Group{
+                    HStack{
+                        ForEach(images.indices, id: \.self) { i in
+                            Button{
+                                self.imageIndex = i
+                                self.isShowAttachment = true
+                            } label: {
+                                Image(uiImage: images[i])
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .padding()
+                            }
+                        }
+                    }
+                    
+//                    IDK WHAT THESE ARE
+//                    Button{
+//                VStack(alignment:.leading, spacing: 0){
+//                    Text("Images:")
+            
+                    
+                    Button{
                         self.isShowPhotoLibrary = true
-                    }) {
-                        
+                    } label: {
                         HStack {
                             Image(systemName: "photo")
                                 .font(.system(size: 20))
@@ -78,13 +100,10 @@ struct CreateActivityView: View {
                     }
                 }
                 Button{
-                    let startTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: startTime)
-                    let endTimeComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: endTime)
-                    
-                    TVM.createActivity(day: day, title: title, startTimeComponents: startTimeComponents, endTimeComponents: endTimeComponents, description: description, url: url, address: address)
+                    TVM.createActivity(day: day, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: images)
                     
                     dismiss()
-                }label:{
+                } label:{
                     ZStack{
                         Rectangle().fill(Color(hue: 0.294, saturation: 0.31, brightness: 0.661))
                             .cornerRadius(12)
@@ -97,7 +116,9 @@ struct CreateActivityView: View {
                 }.padding()
             }
         }.sheet(isPresented: $isShowPhotoLibrary) {
-            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+            ImagePicker(sourceType: .photoLibrary, images: $images)
+        }.sheet(isPresented: $isShowAttachment) {
+            EditAttachmentView(images: $images, isShowAttachment: $isShowAttachment, index: imageIndex)
         }
     }
     
