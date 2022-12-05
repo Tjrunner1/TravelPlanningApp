@@ -62,6 +62,7 @@ struct CreateActivityView: View {
                         .textFieldStyle(.roundedBorder)
                         .border(.gray)
                 }.frame(width: width/1.3, alignment: .center)
+                    .padding(.bottom)
                 
                 Group{
                     HStack{
@@ -78,19 +79,22 @@ struct CreateActivityView: View {
                             }
                         }
                     }
+                    VStack(alignment:.leading, spacing: 0){
+                        Text("Photos:")
                     
-                    Button{
-                        self.isShowPhotoLibrary = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "photo")
-                                .font(.system(size: 20))
-                                
-                            Text("Photo library")
-                                .font(.callout)
+                        Button{
+                            self.isShowPhotoLibrary = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "photo")
+                                    .font(.system(size: 20))
+                                    
+                                Text("Photo library")
+                                    .font(.callout)
+                            }
+                            .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
+                            .border(.gray)
                         }
-                        .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
-                        .border(.gray)
                     }
                 }
                 Button{
