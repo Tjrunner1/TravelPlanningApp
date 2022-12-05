@@ -99,7 +99,7 @@ class TripsViewModel: ObservableObject {
         addImagesToFilePath(activity: activity)
     }
     
-    func editActivity(activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?) {
+    func editActivity(activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
         //Get percise date
         let startTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: startTime))!
         let endTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endTime))!
@@ -111,6 +111,7 @@ class TripsViewModel: ObservableObject {
         activity.description = description == "" ? nil : description
         activity.url = url == "" ? nil : url
         activity.address = address == "" ? nil : address
+        activity.attachments = attachments?.count == 0 ? nil : attachments
         
         //save the info to json
         writeToJSONFile()
