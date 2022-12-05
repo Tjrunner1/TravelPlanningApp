@@ -81,7 +81,7 @@ struct ActivityView: View {
             
         }.toolbar{ToolbarItem{
             NavigationLink{
-                EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "", attachments: activity.attachments!)
+                EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "", attachments: activity.attachments ?? [UIImage]())
             } label: {
                 Image(systemName: "pencil")
             }
