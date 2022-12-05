@@ -50,7 +50,6 @@ struct EditActivityView: View {
             TextField(address, text: $address)
             
             //IMAGES
-            if activity.attachments != nil {
                 
                 Group{
                     HStack{
@@ -81,7 +80,7 @@ struct EditActivityView: View {
                         .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
                         .border(.gray)
                     }
-                }            }
+                }
          
             Button{
                 TVM.editActivity(activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: attachments)
