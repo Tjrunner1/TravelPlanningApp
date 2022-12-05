@@ -54,14 +54,16 @@ struct HomepageView: View {
                 ScrollView{
                     VStack{
                         ForEach(TVM.trips) { trip in
-                            NavigationLink{
-                                TripView(trip: trip)
-                            } label: {
-                                ZStack{
-                                    ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-                                    VStack{
-                                        Text("\(trip.name)").foregroundColor(.black).font(.title)
-                                        Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
+                            if (Date.now.distance(to: trip.endDate) > 0){
+                                NavigationLink{
+                                    TripView(trip: trip)
+                                } label: {
+                                    ZStack{
+                                        ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
+                                        VStack{
+                                            Text("\(trip.name)").foregroundColor(.black).font(.title)
+                                            Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
+                                        }
                                     }
                                 }
                             }
