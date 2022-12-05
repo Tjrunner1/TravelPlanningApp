@@ -12,7 +12,7 @@ struct AttachmentView: View {
     
     var body: some View {
         VStack{
-            Image(uiImage: selectedImage)
+            Image(uiImage: selectedImage).resizable().scaledToFit()
         }
     }
 }

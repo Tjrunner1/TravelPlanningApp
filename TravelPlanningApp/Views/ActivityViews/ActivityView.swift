@@ -73,7 +73,13 @@ struct ActivityView: View {
             }).padding()
         }.sheet(isPresented: $isShowAttachment) {
             AttachmentView(selectedImage: activity.attachments![imageIndex])
-        }
+        }.toolbar{ToolbarItem{
+            NavigationLink{
+                EditActivityView(activity: activity)
+            } label: {
+                Image(systemName: "pencil")
+            }
+        }}
     }
     
     func applyDateFormat(date: Date) -> String {

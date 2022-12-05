@@ -19,12 +19,12 @@
 		1B8E96DA293C33C5008E0F09 /* ImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96D9293C33C5008E0F09 /* ImagePickerModel.swift */; };
 		1B8E96DE293CF2E4008E0F09 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */; };
 		1B8E96E0293D210E008E0F09 /* EditAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */; };
+		1B8E96E2293D7438008E0F09 /* EditTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E96E1293D7438008E0F09 /* EditTripView.swift */; };
 		1BB0468C291FE7EB00F8F949 /* CreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */; };
 		1BB04692292015EF00F8F949 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB04691292015EF00F8F949 /* DayModel.swift */; };
 		1BB046942920188300F8F949 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046932920188300F8F949 /* ActivityModel.swift */; };
 		1BB046BE29355DBE00F8F949 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BD29355DBE00F8F949 /* TripView.swift */; };
 		1BB046C0293561E700F8F949 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BF293561E700F8F949 /* DayView.swift */; };
-		1BD690F9293975F700764EA7 /* CreateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD690F8293975F700764EA7 /* CreateDayView.swift */; };
 		1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,12 +42,12 @@
 		1B8E96D9293C33C5008E0F09 /* ImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerModel.swift; sourceTree = "<group>"; };
 		1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAttachmentView.swift; sourceTree = "<group>"; };
+		1B8E96E1293D7438008E0F09 /* EditTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTripView.swift; sourceTree = "<group>"; };
 		1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripView.swift; sourceTree = "<group>"; };
 		1BB04691292015EF00F8F949 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		1BB046932920188300F8F949 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		1BB046BD29355DBE00F8F949 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		1BB046BF293561E700F8F949 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
-		1BD690F8293975F700764EA7 /* CreateDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDayView.swift; sourceTree = "<group>"; };
 		1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +137,7 @@
 			children = (
 				1BB0468B291FE7EB00F8F949 /* CreateTripView.swift */,
 				1BB046BD29355DBE00F8F949 /* TripView.swift */,
+				1B8E96E1293D7438008E0F09 /* EditTripView.swift */,
 			);
 			path = TripViews;
 			sourceTree = "<group>";
@@ -155,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				1BB046BF293561E700F8F949 /* DayView.swift */,
-				1BD690F8293975F700764EA7 /* CreateDayView.swift */,
 			);
 			path = DayViews;
 			sourceTree = "<group>";
@@ -231,11 +231,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BB046942920188300F8F949 /* ActivityModel.swift in Sources */,
-				1BD690F9293975F700764EA7 /* CreateDayView.swift in Sources */,
 				1BB046C0293561E700F8F949 /* DayView.swift in Sources */,
 				1B8E96DA293C33C5008E0F09 /* ImagePickerModel.swift in Sources */,
 				1B8E96E0293D210E008E0F09 /* EditAttachmentView.swift in Sources */,
 				1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */,
+				1B8E96E2293D7438008E0F09 /* EditTripView.swift in Sources */,
 				1B08ED4D291ABE1E00DD99F7 /* CreateActivityView.swift in Sources */,
 				1B8E96D6293C0511008E0F09 /* EditActivityView.swift in Sources */,
 				1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */,

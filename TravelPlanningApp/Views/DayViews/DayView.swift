@@ -12,27 +12,19 @@ struct DayView: View {
 
     var body: some View{
         VStack{
-//                Text("Activities")
-//                    .font(.title)
-                VStack{
-                    ForEach(day.activities){ activity in
-                        NavigationLink {
-                            ActivityView(activity: activity).toolbar{ToolbarItem{
-                                NavigationLink{
-                                    EditActivityView(activity: activity)
-                                } label: {
-                                    Image(systemName: "pencil")
-                                }
-                            }}
-                        } label: {
-                            ZStack{
-                                Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame(height: 100)
-                                    .padding(7)
-                                Text("\(activity.title)").foregroundColor(.black)
+            VStack{
+                ForEach(day.activities){ activity in
+                    NavigationLink {
+                        ActivityView(activity: activity)
+                    } label: {
+                        ZStack{
+                            Rectangle().cornerRadius(20).foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.896)).shadow(radius: 5).frame(height: 100)
+                                .padding(7)
+                            Text("\(activity.title)").foregroundColor(.black)
                         }
                     }
                 }
-                }
+            }
 
             NavigationLink{
                 CreateActivityView(day: day)

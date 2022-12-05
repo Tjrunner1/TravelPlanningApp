@@ -18,6 +18,12 @@ struct TripView: View {
                 CalendarView(trip: trip)
                 Spacer()
             }
-        }
+        }.toolbar{ToolbarItem{
+            NavigationLink{
+                EditTripView()
+            } label: {
+                Image(systemName: "pencil")
+            }
+        }}
     }
 }
