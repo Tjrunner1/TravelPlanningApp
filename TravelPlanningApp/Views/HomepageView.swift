@@ -7,9 +7,40 @@
 
 import SwiftUI
 
+class TimeMgr: ObservableObject {
+    var timer = Timer()
+    
+    @Published var secondsRemaining = 1
+    
+    init(){
+        start()
+    }
+    
+    func start(){
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){_ in
+            self.secondsRemaining -= 1
+        }
+    }
+}
+
+func format(trip: Trip)->String{
+    let TI = Date.now.distance(to: trip.startDate)
+    
+    //let TI = Date.now.distance(to: Date.init(timeIntervalSinceReferenceDate: TimeInterval(trip.startDate)))
+    
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.day]
+    formatter.unitsStyle = .positional
+    return formatter.string(from: TI)!
+    
+}
+
+
 struct HomepageView: View {
     @EnvironmentObject var TVM: TripsViewModel
     var width = UIScreen.main.bounds.width
+    
+    @ObservedObject var TM = TimeMgr()
     
     init() {
         //check to see if alternate view should be loaded (aka. if the date overlaps with a trip)
@@ -17,6 +48,7 @@ struct HomepageView: View {
     }
     
     var body: some View {
+        
         NavigationView{
             ZStack{
                 ScrollView{
@@ -27,7 +59,10 @@ struct HomepageView: View {
                             } label: {
                                 ZStack{
                                     ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-                                    Text("\(trip.name)").foregroundColor(.black)
+                                    VStack{
+                                        Text("\(trip.name)").foregroundColor(.black).font(.title)
+                                        Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
+                                    }
                                 }
                             }
                         }

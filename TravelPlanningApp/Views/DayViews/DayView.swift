@@ -9,6 +9,9 @@ import SwiftUI
 
 struct DayView: View {
     @ObservedObject var day: Day
+    
+    var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
 
     var body: some View{
         VStack{
@@ -18,7 +21,10 @@ struct DayView: View {
                 } label: {
                     ZStack{
                         ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-                        Text("\(activity.title)").foregroundColor(.black)
+                        VStack{
+                            Text("\(activity.title)").foregroundColor(.black).font(.title).frame(alignment: .leading)
+                            Text("\(activity.startTime.formatted(date: .omitted, time: .shortened)) - \(activity.endTime.formatted(date: .omitted, time: .shortened))").foregroundColor(.black).font(.subheadline)
+                        }
                     }
                 }
             }
@@ -27,7 +33,7 @@ struct DayView: View {
             } label: {
                 VStack{
                     AddButtonView(color: Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
-                    Text("Add Activity")
+                    Text("Add Activity").font(.system(.headline, design: .rounded))
                         .foregroundColor((Color(hue: 0.572, saturation: 0.792, brightness: 0.594)))
                 }
             }

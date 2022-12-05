@@ -20,20 +20,20 @@ struct EditTripView: View {
     var body: some View {
         
         VStack{
-            TextField(trip.name, text: $name)
-            
+            TextField(trip.name, text: $name).frame(width: width/5, alignment: .center).font(.system(.title, design: .rounded))
             DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
             
             DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
               
-                
+            
             Button{
                 TVM.editTrip(trip: trip, name: name, startDate: startDate, endDate: endDate)
             } label: {
-                Text("Update Tripq")
+                Text("Update Trip")
             }
+            Spacer()
         }
     }
 }
