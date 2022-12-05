@@ -115,6 +115,7 @@ class TripsViewModel: ObservableObject {
         
         //save the info to json
         writeToJSONFile()
+        addImagesToFilePath(activity: activity)
     }
     
     func deleteActivity(activity: Activity) {

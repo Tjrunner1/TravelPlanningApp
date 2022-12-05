@@ -73,6 +73,7 @@ struct CreateActivityView: View {
                             } label: {
                                 Image(uiImage: images[i])
                                     .resizable()
+                                    .cornerRadius(5)
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: width/12, height: height/12, alignment: .center)
                                     .padding()
