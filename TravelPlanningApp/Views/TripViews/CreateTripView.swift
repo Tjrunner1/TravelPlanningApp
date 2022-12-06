@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateTripView: View {
     @EnvironmentObject var TVM: TripsViewModel
-    @State var tripID: Int?
+    @State var trip: Trip?
     @State var tripName: String = "";
     @State var days: Int = 1
     @State private var startDate = Date()
@@ -18,7 +18,7 @@ struct CreateTripView: View {
     var width = UIScreen.main.bounds.width
     
     var body: some View {
-        if (tripID == nil) {
+        if (trip == nil) {
             VStack{
                 Text("Create a Trip")
                     .font(.title)
@@ -33,7 +33,11 @@ struct CreateTripView: View {
                     .frame(width: width/1.3, alignment: .leading)
                 Spacer(minLength: 2)
                 Button {
-                    self.tripID = TVM.createTrip(name: tripName, startDate: startDate, endDate: endDate)
+                    if endDate < startDate {
+                        endDate = startDate
+                    }
+                    
+                    self.trip = TVM.createTrip(name: tripName, startDate: startDate, endDate: endDate)
                 } label: {
                     Text("Create Trip")
                     Image(systemName: "plus.circle").font(.title)
@@ -41,7 +45,7 @@ struct CreateTripView: View {
                 Spacer()
             }
         } else {
-            TripView(trip: TVM.trips[tripID!])
+            TripView(trip: trip!)
         }
     }
 }

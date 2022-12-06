@@ -37,31 +37,47 @@ func format(trip: Trip)->String{
 
 
 struct HomepageView: View {
-    @EnvironmentObject var TVM: TripsViewModel
+    var TVM = TripsViewModel()
     var width = UIScreen.main.bounds.width
-    
+    @State var activateHiddenView: Bool
+    var trip: Trip?
+    var dayID: Int?
     @ObservedObject var TM = TimeMgr()
     
     init() {
-        //check to see if alternate view should be loaded (aka. if the date overlaps with a trip)
-        findApplicableTrip()
+        let currentDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month,. day], from: Date.now))!
+        for trip in TVM.trips {
+            if (trip.startDate <= currentDate && currentDate <= trip.endDate) {
+                self.trip = trip
+                self.dayID = 0
+                for i in 0 ..< trip.days.count {
+                    if (trip.days[i].date <= currentDate) {
+                        dayID = trip.days[i].id
+                    }
+                }
+            }
+        }
+        if (trip != nil) {
+            self.activateHiddenView = true
+        } else {
+            self.activateHiddenView = false
+        }
     }
     
     var body: some View {
-        
         NavigationView{
             ZStack{
                 ScrollView{
                     VStack{
                         ForEach(TVM.trips) { trip in
-                            if (Date.now.distance(to: trip.endDate) > 0){
-                                NavigationLink{
-                                    TripView(trip: trip)
-                                } label: {
-                                    ZStack{
-                                        ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-                                        VStack{
-                                            Text("\(trip.name)").foregroundColor(.black).font(.title)
+                            NavigationLink{
+                                TripView(trip: trip)
+                            } label: {
+                                ZStack{
+                                    ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
+                                    VStack{
+                                        Text("\(trip.name)").foregroundColor(.black).font(.title)
+                                        if Date.now <= trip.startDate {
                                             Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
                                         }
                                     }
@@ -73,6 +89,15 @@ struct HomepageView: View {
                         } label: {
                             AddButtonView(color: Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
                         }.frame(width: width)
+                        
+                        if activateHiddenView {
+                            NavigationLink(isActive: $activateHiddenView){
+                                TripView(trip: trip!, dayID: dayID!)
+                            } label: {
+                                EmptyView()
+                            }
+                        }
+                        
                     }
                 }
             }.navigationTitle("My Trips")
@@ -81,9 +106,6 @@ struct HomepageView: View {
                     Image("road").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea().opacity(0.65)
                 })
         }.navigationViewStyle(StackNavigationViewStyle())
+            .environmentObject(TVM)
     }
-}
-
-func findApplicableTrip() {
-    
 }

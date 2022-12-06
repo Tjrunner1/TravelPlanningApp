@@ -17,7 +17,7 @@ struct DayView: View {
         VStack{
             ForEach(day.activities){ activity in
                 NavigationLink {
-                    ActivityView(activity: activity)
+                    ActivityView(day: day, activity: activity)
                 } label: {
                     ZStack{
                         ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))

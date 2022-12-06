@@ -11,7 +11,7 @@ import SwiftUI
 struct TravelPlanningAppApp: App {
     var body: some Scene {
         WindowGroup {
-            HomepageView().environmentObject(TripsViewModel())
+            HomepageView()
         }
     }
 }

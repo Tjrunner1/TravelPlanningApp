@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditTripView: View {
+    @Environment(\.dismiss) private var dismiss
     var width = UIScreen.main.bounds.width
 
     @EnvironmentObject var TVM: TripsViewModel
@@ -27,9 +28,18 @@ struct EditTripView: View {
             DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
               
-            
+            Button{
+                TVM.deleteTrip(trip: trip)
+                
+                //There is no good way to do this, without updating to a newer version of Xcode
+                guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+                navigationController.popToRootViewController(animated: true)
+            } label: {
+                Text("Delete the Trip")
+            }
             Button{
                 TVM.editTrip(trip: trip, name: name, startDate: startDate, endDate: endDate)
+                dismiss()
             } label: {
                 Text("Update Trip")
             }

@@ -9,13 +9,14 @@ import SwiftUI
 
 struct TripView: View {
     @ObservedObject var trip: Trip
+    var dayID: Int = 0
     
     var body: some View {
         ScrollView{
             VStack(alignment: .center){
                 Text(trip.name)
                     .font(.title)
-                CalendarView(trip: trip)
+                CalendarView(trip: trip, day: trip.days[dayID])
                 Spacer()
             }
         }.toolbar{ToolbarItem{

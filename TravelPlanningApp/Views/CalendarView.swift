@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @ObservedObject var trip: Trip
-    @State var dayID: Int = 0
+    @State var day: Day
     var numberOfItemsPerRow = 7
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
@@ -20,10 +20,10 @@ struct CalendarView: View {
                 HStack{
                     ForEach(createArrayOfDaysDisplay(i: i)) { day in
                         Button{
-                            self.dayID = day.id
+                            self.day = day
                         } label: {
                             ZStack{
-                                Rectangle().foregroundColor(dayID == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
                                     .cornerRadius(10)
                                 Text(applyDateFormat(date: day.date)).foregroundColor(.white)
                             }.frame(width: width/CGFloat((numberOfItemsPerRow + 2)), height: height/12)
@@ -33,7 +33,7 @@ struct CalendarView: View {
             }
 
             Divider()
-            DayView(day: trip.days[dayID])
+            DayView(day: self.day)
         }
     }
 

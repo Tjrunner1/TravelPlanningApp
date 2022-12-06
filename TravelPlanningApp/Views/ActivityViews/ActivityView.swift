@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ActivityView: View {
-    @ObservedObject var activity: Activity
     @EnvironmentObject var TVM: TripsViewModel
+    @ObservedObject var day: Day
+    @ObservedObject var activity: Activity
     @State private var isShowAttachment = false
     @State var imageIndex = 0
     
@@ -82,7 +83,7 @@ struct ActivityView: View {
             
         }.toolbar{ToolbarItem{
             NavigationLink{
-                EditActivityView(activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "", attachments: activity.attachments ?? [UIImage]())
+                EditActivityView(day: day, activity: activity, title: activity.title, startTime: activity.startTime, endTime: activity.endTime, description: activity.description ?? "", url: activity.url ?? "", address: activity.address ?? "", attachments: activity.attachments ?? [UIImage]())
             } label: {
                 Image(systemName: "pencil")
             }

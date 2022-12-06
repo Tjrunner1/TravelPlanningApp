@@ -10,6 +10,7 @@ import SwiftUI
 struct EditActivityView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var TVM: TripsViewModel
+    @ObservedObject var day: Day
     @ObservedObject var activity: Activity
     
     @State var title: String
@@ -84,7 +85,7 @@ struct EditActivityView: View {
                 }
          
             Button{
-                TVM.editActivity(activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: attachments)
+                TVM.editActivity(day: day, activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: attachments)
                 
                 dismiss()
             } label: {

@@ -17,7 +17,7 @@ class TripsViewModel: ObservableObject {
         parseJSONFile()
     }
 
-    func createTrip(name: String, startDate: Date, endDate: Date) -> Int {
+    func createTrip(name: String, startDate: Date, endDate: Date) -> Trip {
         //Get percise date
         let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: startDate))!
         let endDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: endDate))!
@@ -35,10 +35,13 @@ class TripsViewModel: ObservableObject {
         trips.append(newTrip)
         tripIDCounter += 1
 
+        //orders based on start time
+        trips.sort{$0.startDate < $1.endDate}
+        
         //save the info to json
         writeToJSONFile()
         
-        return newTrip.id
+        return newTrip
     }
     
     func editTrip(trip: Trip, name: String, startDate: Date, endDate: Date) {
@@ -65,15 +68,19 @@ class TripsViewModel: ObservableObject {
         trip.endDate = endDate
         trip.days = days
         
+        //orders based on start time
+        trips.sort{$0.startDate < $1.endDate}
+        
         //save the info to json
         writeToJSONFile()
     }
     
     func deleteTrip(trip: Trip) {
         for i in 0 ..< trips.count {
+            print(i)
             if trips[i].id == trip.id {
                 trips.remove(at: i)
-                return
+                break
             }
         }
         
@@ -99,7 +106,7 @@ class TripsViewModel: ObservableObject {
         addImagesToFilePath(activity: activity)
     }
     
-    func editActivity(activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
+    func editActivity(day: Day, activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
         //Get percise date
         let startTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: startTime))!
         let endTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endTime))!
@@ -113,6 +120,9 @@ class TripsViewModel: ObservableObject {
         activity.address = address == "" ? nil : address
         activity.attachments = attachments?.count == 0 ? nil : attachments
         
+        //orders based on start time
+        day.activities.sort{$0.startTime < $1.startTime}
+        
         //save the info to json
         writeToJSONFile()
         addImagesToFilePath(activity: activity)
@@ -124,7 +134,7 @@ class TripsViewModel: ObservableObject {
                 for k in 0 ..< trips[i].days[j].activities.count {
                     if trips[i].days[j].activities[k].id == activity.id {
                         trips[i].days[j].activities.remove(at: k)
-                        return
+                        break
                     }
                 }
             }
