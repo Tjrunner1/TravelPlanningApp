@@ -27,6 +27,9 @@
 		1BB046BE29355DBE00F8F949 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BD29355DBE00F8F949 /* TripView.swift */; };
 		1BB046C0293561E700F8F949 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB046BF293561E700F8F949 /* DayView.swift */; };
 		1BFB74D5291B0D1000E169F8 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */; };
+		759FE89C293FFA040077902F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759FE89B293FFA040077902F /* TextView.swift */; };
+		759FE89E2940014B0077902F /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759FE89D2940014B0077902F /* Tabs.swift */; };
+		759FE8A02940019D0077902F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759FE89F2940019D0077902F /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		1BB046BD29355DBE00F8F949 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		1BB046BF293561E700F8F949 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		1BFB74D4291B0D1000E169F8 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
+		759FE89B293FFA040077902F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		759FE89D2940014B0077902F /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
+		759FE89F2940019D0077902F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,9 @@
 				1B8E96DD293CF2E4008E0F09 /* AttachmentView.swift */,
 				1B8E96DF293D210E008E0F09 /* EditAttachmentView.swift */,
 				1B8E96E3293D8730008E0F09 /* ContainerViews.swift */,
+				759FE89B293FFA040077902F /* TextView.swift */,
+				759FE89D2940014B0077902F /* Tabs.swift */,
+				759FE89F2940019D0077902F /* ListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +245,7 @@
 				1BB046942920188300F8F949 /* ActivityModel.swift in Sources */,
 				1BB046C0293561E700F8F949 /* DayView.swift in Sources */,
 				1B8E96E4293D8731008E0F09 /* ContainerViews.swift in Sources */,
+				759FE89E2940014B0077902F /* Tabs.swift in Sources */,
 				1B8E96DA293C33C5008E0F09 /* ImagePickerModel.swift in Sources */,
 				1B8E96E0293D210E008E0F09 /* EditAttachmentView.swift in Sources */,
 				1B08ED4F291ABE3300DD99F7 /* HomepageView.swift in Sources */,
@@ -249,7 +259,9 @@
 				1B281720291AE637001708F7 /* TripModel.swift in Sources */,
 				1B08ED3A291AB6D800DD99F7 /* TravelPlanningAppApp.swift in Sources */,
 				1B08ED51291AC35E00DD99F7 /* ActivityView.swift in Sources */,
+				759FE8A02940019D0077902F /* ListView.swift in Sources */,
 				1BB0468C291FE7EB00F8F949 /* CreateTripView.swift in Sources */,
+				759FE89C293FFA040077902F /* TextView.swift in Sources */,
 				1BB046BE29355DBE00F8F949 /* TripView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

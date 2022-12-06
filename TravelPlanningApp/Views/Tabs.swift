@@ -1,0 +1,40 @@
+//
+//  Tabs.swift
+//  TravelPlanningApp
+//
+//  Created by Tori Keener on 12/6/22.
+//
+
+import SwiftUI
+
+struct Tabs: View {
+    @ObservedObject var trip: Trip
+
+    var body: some View {
+
+        
+        TabView{
+            TripView(trip: trip)
+                .tabItem{
+                    Label("Calendar", systemImage: "calendar")
+                }
+            ListView()
+                .tabItem{
+                    Label("Packing List", systemImage: "note")
+                }
+          
+        }.toolbar{ToolbarItem{
+            NavigationLink{
+                EditTripView(trip: trip, name: trip.name, startDate: trip.startDate, endDate: trip.endDate)
+            } label: {
+                Image(systemName: "pencil")
+            }
+        }}
+    }
+}
+
+//struct Tabs_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Tabs()
+//    }
+//}

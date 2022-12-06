@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct EditTripView: View {
+    
+    
     @Environment(\.dismiss) private var dismiss
     var width = UIScreen.main.bounds.width
 
     @EnvironmentObject var TVM: TripsViewModel
     @ObservedObject var trip: Trip
-    
+     
     @State var name:String
     @State var startDate: Date
     @State var endDate: Date
     
     var body: some View {
+        //DELETE !!!!!!!!!!!!!!!!!!
+        TextView(text: $name)
+            .padding(10)
+            .border(Color.primary, width: 0.5)
+            .padding()
+            .navigationTitle("Edit your biography")
         
         VStack{
             TextField(trip.name, text: $name).frame(width: width/4, alignment: .center).font(.system(.title, design: .rounded))

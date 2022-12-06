@@ -45,7 +45,8 @@ struct CreateTripView: View {
                 Spacer()
             }
         } else {
-            TripView(trip: trip!)
+            //TripView(trip: trip!)
+            Tabs(trip: trip!)
         }
     }
 }
