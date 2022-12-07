@@ -181,64 +181,66 @@ class TripsViewModel: ObservableObject {
         }
     }
 
-    func writeToJSONFile(){
-        //format data into json style
-        var topLevel: [AnyObject] = []
-        for trip in trips {
-            var tripDict: [String: AnyObject] = [:]
-            tripDict["id"] = NSNumber(value: trip.id)
-            tripDict["name"] = NSString(utf8String: trip.name)
-            tripDict["startDate"] = NSNumber(value: trip.startDate.timeIntervalSinceReferenceDate)
-            tripDict["endDate"] = NSNumber(value: trip.endDate.timeIntervalSinceReferenceDate)
-            tripDict["list"] = NSString(utf8String: trip.list)
-            var days: [AnyObject] = []
-            for day in trip.days {
-                var dayDict: [String: AnyObject] = [:]
-                dayDict["id"] = NSNumber(value: day.id)
-                dayDict["date"] = NSNumber(value: day.date.timeIntervalSinceReferenceDate)
-                var activities: [AnyObject] = []
-                for activity in day.activities {
-                    var activityDict: [String: AnyObject] = [:]
-                    activityDict["id"] = NSNumber(value: activity.id)
-                    activityDict["title"] = NSString(utf8String: activity.title)
-                    activityDict["startTime"] = NSNumber(value: activity.startTime.timeIntervalSinceReferenceDate)
-                    activityDict["endTime"] = NSNumber(value: activity.endTime.timeIntervalSinceReferenceDate)
-                    if activity.description != nil {
-                        activityDict["description"] = NSString(utf8String: activity.description!)
-                    }
-                    if activity.url != nil {
-                        activityDict["url"] = NSString(utf8String: activity.url!)
-                    }
-                    if activity.address != nil {
-                        activityDict["address"] = NSString(utf8String: activity.address!)
-                    }
-                    if activity.attachments != nil {
-                        var attachmentArray: [String] = []
-                        for i in 0 ..< activity.attachments!.count {
-                            let string = NSString(utf8String: "\(activity.id)_\(i).png")
-                            attachmentArray.append(string! as String)
+    func writeToJSONFile() {
+        DispatchQueue.main.async {
+            //format data into json style
+            var topLevel: [AnyObject] = []
+                for trip in self.trips {
+                var tripDict: [String: AnyObject] = [:]
+                tripDict["id"] = NSNumber(value: trip.id)
+                tripDict["name"] = NSString(utf8String: trip.name)
+                tripDict["startDate"] = NSNumber(value: trip.startDate.timeIntervalSinceReferenceDate)
+                tripDict["endDate"] = NSNumber(value: trip.endDate.timeIntervalSinceReferenceDate)
+                tripDict["list"] = NSString(utf8String: trip.list)
+                var days: [AnyObject] = []
+                for day in trip.days {
+                    var dayDict: [String: AnyObject] = [:]
+                    dayDict["id"] = NSNumber(value: day.id)
+                    dayDict["date"] = NSNumber(value: day.date.timeIntervalSinceReferenceDate)
+                    var activities: [AnyObject] = []
+                    for activity in day.activities {
+                        var activityDict: [String: AnyObject] = [:]
+                        activityDict["id"] = NSNumber(value: activity.id)
+                        activityDict["title"] = NSString(utf8String: activity.title)
+                        activityDict["startTime"] = NSNumber(value: activity.startTime.timeIntervalSinceReferenceDate)
+                        activityDict["endTime"] = NSNumber(value: activity.endTime.timeIntervalSinceReferenceDate)
+                        if activity.description != nil {
+                            activityDict["description"] = NSString(utf8String: activity.description!)
                         }
-                        activityDict["attachments"] = attachmentArray as AnyObject
+                        if activity.url != nil {
+                            activityDict["url"] = NSString(utf8String: activity.url!)
+                        }
+                        if activity.address != nil {
+                            activityDict["address"] = NSString(utf8String: activity.address!)
+                        }
+                        if activity.attachments != nil {
+                            var attachmentArray: [String] = []
+                            for i in 0 ..< activity.attachments!.count {
+                                let string = NSString(utf8String: "\(activity.id)_\(i).png")
+                                attachmentArray.append(string! as String)
+                            }
+                            activityDict["attachments"] = attachmentArray as AnyObject
+                        }
+                        activities.append(activityDict as AnyObject)
                     }
-                    activities.append(activityDict as AnyObject)
+                    dayDict["activities"] = activities as AnyObject
+                    days.append(dayDict as AnyObject)
                 }
-                dayDict["activities"] = activities as AnyObject
-                days.append(dayDict as AnyObject)
+                tripDict["days"] = days as AnyObject
+                topLevel.append(tripDict as AnyObject)
             }
-            tripDict["days"] = days as AnyObject
-            topLevel.append(tripDict as AnyObject)
-        }
 
-        //write to the json file
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: topLevel, options: .prettyPrinted)
-            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let url = documentDirectory.appendingPathComponent("Trips.json")
-                try jsonData.write(to: url)
-                print(url)
+            //write to the json file
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: topLevel, options: .prettyPrinted)
+                if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    let url = documentDirectory.appendingPathComponent("Trips.json")
+                    try jsonData.write(to: url)
+                    print(url)
+                }
+            } catch {
+                print(error)
             }
-        } catch {
-            print(error)
         }
     }
     
