@@ -19,7 +19,7 @@ struct ListView: View {
             Text("Packing List").font(.title)
             TextView(text: $trip.list)
                 .padding(10)
-             //   .border(Color.primary, width: 0.35)
+                .border(.gray, width: 0.5)
                 .padding()
             Button{
                 TVM.updateList(trip: trip, list: trip.list)
@@ -35,8 +35,3 @@ struct ListView: View {
     }
 }
 
-//struct ListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListView()
-//    }
-//}

@@ -53,26 +53,9 @@ struct EditTripView: View {
                 }
             }
               Spacer()
-//            Button{
-//                TVM.deleteTrip(trip: trip)
-//
-//                //There is no good way to do this, without updating to a newer version of Xcode
-//                guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-//                navigationController.popToRootViewController(animated: true)
-//            } label: {
-//                ZStack{
-//                    Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
-//                        .frame(height: height/10)
-//                    Text("Delete  the Trip")
-//                        .foregroundColor(.white)
-//                }
-//            }
-          
-           
         }.toolbar{ToolbarItem{
             Button{
                 TVM.deleteTrip(trip: trip)
-                print("im here")
                 
                 
                 //There is no longer a good way to do this, without updating to a newer version of Xcode
@@ -80,12 +63,6 @@ struct EditTripView: View {
                 navigationController.popToRootViewController(animated: true)
             } label: {
                 Image(systemName: "trash")
-//                ZStack{
-//                    Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
-//                        .frame(height: height/10)
-//                    Text("Delete  the Trip")
-//                        .foregroundColor(.white)
-//                }
             }}
         }
     }

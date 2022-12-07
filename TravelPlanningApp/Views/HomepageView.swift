@@ -71,16 +71,13 @@ struct HomepageView: View {
                         ForEach(TVM.trips) { trip in
 
                             NavigationLink{
-                                //TripView(trip: trip)
                                 Tabs(trip: trip)
                             } label: {
                                 ZStack{
-                                    //ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
                                     ContainerView(color: Color(hue: 0.084, saturation: 0.132, brightness: 0.821))
                                     VStack{
                                         Text("\(trip.name)").foregroundColor(.white).font(.title)
                                         if Date.now <= trip.startDate {
-
                                             Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.white).font(.caption)
                                         }
                                     }

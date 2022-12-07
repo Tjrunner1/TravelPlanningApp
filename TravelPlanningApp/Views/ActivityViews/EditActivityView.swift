@@ -33,8 +33,6 @@ struct EditActivityView: View {
         ScrollView{
             VStack(alignment: .leading, spacing: height/50){
                 HStack{
-                    //Text("Title:")
-                     //  .padding(.horizontal)
                     //TITLE
                     if (activity.title == "") {
                         TextField("Activity Title", text: $title)
@@ -114,7 +112,6 @@ struct EditActivityView: View {
                                     .font(.callout)
                                     .padding()
                             }
-                           // .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
                             .border(.gray, width: 0.5)
                         }.frame(width: width, alignment: .center)
                     }
