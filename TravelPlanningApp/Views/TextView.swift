@@ -23,6 +23,7 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ view: UITextView, context: Context) {
         view.text = text
+            
     }
 }
 
@@ -39,8 +40,5 @@ extension TextView {
         }
     }
     
-    
 
 }
-
-
