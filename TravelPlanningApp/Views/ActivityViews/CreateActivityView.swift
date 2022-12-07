@@ -58,7 +58,7 @@ struct CreateActivityView: View {
                 }.frame(width: width/1.3, alignment: .center)
                 VStack(alignment:.leading, spacing: 0){
                     Text("Address:                       ")
-                    TextField("Copy Maps Address Here",text: $url)
+                    TextField("Copy Maps Address Here",text: $address)
                         .textFieldStyle(.roundedBorder)
                         .border(.gray)
                 }.frame(width: width/1.3, alignment: .center)

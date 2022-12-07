@@ -51,7 +51,7 @@ struct ActivityView: View {
                 }.padding()
             }
             if activity.attachments != nil {
-                HStack{
+                HStack(alignment: .center){
                     ForEach(activity.attachments!.indices, id: \.self) { i in
                         Button{
                             self.imageIndex = i
@@ -60,12 +60,10 @@ struct ActivityView: View {
                             Image(uiImage: activity.attachments![i])
                                 .resizable()
                                 .cornerRadius(5)
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: width/12, height: height/12, alignment: .center)
-                                .padding()
-                        }
+                                .aspectRatio(contentMode: .fit)
+                        }.padding()
                     }
-                }
+                }.frame(width: width)
             }
          Spacer()
             Button(action:{
@@ -73,7 +71,7 @@ struct ActivityView: View {
             }, label:{
                 ZStack{
                     Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
-                        .frame(height: height/7)
+                        .frame(height: height/10)
                     Text("Delete Activity")
                         .foregroundColor(.white)
                 }

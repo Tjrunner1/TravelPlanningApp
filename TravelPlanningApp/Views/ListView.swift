@@ -22,7 +22,6 @@ struct ListView: View {
                 .padding()
             Button{
                 TVM.updateList(trip: trip, list: trip.list)
-                print("updating list to: \(trip.list)")
             } label: {
                 ZStack{
                     Rectangle().frame(width: width/2, height: height/10).cornerRadius(10)

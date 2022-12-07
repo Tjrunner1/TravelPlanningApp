@@ -30,18 +30,23 @@ struct EditActivityView: View {
 
     
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
             //TITLE
             TextField(activity.title, text: $title)
+                .font(.title)
                 .padding()
             
             //STARTTIME
             DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
                 .frame(width: 250, alignment: .leading)
+                .padding()
             //ENDTIME
             DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
                 .frame(width: 250, alignment: .center)
+                .padding()
             //DESCRIPTION
+           
+            Text("Notes:").padding()
             TextField(description, text: $description)
             
             //URL
@@ -53,7 +58,7 @@ struct EditActivityView: View {
             //IMAGES
                 
                 Group{
-                    HStack{
+                    HStack(alignment: .center){
                         ForEach(attachments.indices, id: \.self) { i in
                             Button{
                                 self.imageIndex = i
@@ -62,12 +67,10 @@ struct EditActivityView: View {
                                 Image(uiImage: attachments[i])
                                     .resizable()
                                     .cornerRadius(5)
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: width/12, height: height/12, alignment: .center)
-                                    .padding()
-                            }
+                                    .aspectRatio(contentMode: .fit)
+                            } .padding()
                         }
-                    }
+                    }.frame(width: width)
                     
                     Button{
                         self.isShowPhotoLibrary = true
