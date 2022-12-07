@@ -34,7 +34,7 @@ struct EditActivityView: View {
             VStack(alignment: .leading, spacing: height/50){
                 //TITLE
                 if (activity.title == "") {
-                    TextField("Activity Title", text: $title)
+                    TextField("activity.title", text: $title)
                         .font(.title)
                         .padding(.horizontal)
                 }else{

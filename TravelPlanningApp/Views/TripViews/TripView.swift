@@ -19,7 +19,7 @@ struct TripView: View {
                 CalendarView(trip: trip, day: trip.days[dayID])
                 Spacer()
             }
-        }.toolbar{ToolbarItem{
+        }.background(Color(hue: 0.162, saturation: 0.028, brightness: 0.606)).toolbar{ToolbarItem{
             NavigationLink{
                 EditTripView(trip: trip, name: trip.name, startDate: trip.startDate, endDate: trip.endDate)
             } label: {

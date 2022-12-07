@@ -78,7 +78,7 @@ struct HomepageView: View {
                             } label: {
                                 ZStack{
                                     //ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-                                    ContainerView(color: Color(hue: 0.084, saturation: 0.12, brightness: 0.854))
+                                    ContainerView(color: Color(hue: 0.084, saturation: 0.132, brightness: 0.821))
                                     VStack{
                                         Text("\(trip.name)").foregroundColor(.white).font(.title)
                                         if Date.now <= trip.startDate {

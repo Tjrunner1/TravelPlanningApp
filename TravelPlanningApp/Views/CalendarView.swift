@@ -24,7 +24,7 @@ struct CalendarView: View {
                         } label: {
                             ZStack{
                                // Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
-                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.084, saturation: 0.12, brightness: 0.854).opacity(0.6): Color(hue: 0.084, saturation: 0.12, brightness: 0.854))
+                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.084, saturation: 0.132, brightness: 0.821).opacity(0.6): Color(hue: 0.084, saturation: 0.132, brightness: 0.821))
                                     .cornerRadius(10)
                                     //.foregroundColor(Color(hue: 0.139, saturation: 0.186, brightness: 0.893))
                                    // .foregroundColor(Color(hue: 0.147, saturation: 0.294, brightness: 0.835))
