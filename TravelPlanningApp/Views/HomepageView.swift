@@ -71,7 +71,7 @@ struct HomepageView: View {
 
                     VStack{
                         ForEach(TVM.trips) { trip in
-//<<<<<<< Updated upstream
+
                             NavigationLink{
                                 //TripView(trip: trip)
                                 Tabs(trip: trip)
@@ -81,16 +81,7 @@ struct HomepageView: View {
                                     VStack{
                                         Text("\(trip.name)").foregroundColor(.black).font(.title)
                                         if Date.now <= trip.startDate {
-//=======
-//                            if (Date.now.distance(to: trip.endDate) > 0) {
-//                                NavigationLink{
-//                                    TripView(trip: trip)
-//                                } label: {
-//                                    ZStack{
-//                                        ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
-//                                        VStack{
-//                                            Text("\(trip.name)").foregroundColor(.black).font(.title)
-//>>>>>>> Stashed changes
+
                                             Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
                                         }
                                     }
@@ -105,7 +96,8 @@ struct HomepageView: View {
                         
                         if activateHiddenView {
                             NavigationLink(isActive: $activateHiddenView){
-                                TripView(trip: trip!, dayID: dayID!)
+                                Tabs(trip: trip!)
+                                //TripView(trip: trip!, dayID: dayID!)
                             } label: {
                                 EmptyView()
                             }
