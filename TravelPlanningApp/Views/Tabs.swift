@@ -9,12 +9,13 @@ import SwiftUI
 
 struct Tabs: View {
     @ObservedObject var trip: Trip
+    var dayID: Int = 0
 
     var body: some View {
 
         
         TabView{
-            TripView(trip: trip)
+            TripView(trip: trip, dayID: dayID)
                 .tabItem{
                     Label("Calendar", systemImage: "calendar")
                 }

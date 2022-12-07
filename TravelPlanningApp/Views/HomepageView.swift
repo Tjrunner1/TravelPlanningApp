@@ -77,12 +77,13 @@ struct HomepageView: View {
                                 Tabs(trip: trip)
                             } label: {
                                 ZStack{
-                                    ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
+                                    //ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
+                                    ContainerView(color: Color(hue: 0.084, saturation: 0.12, brightness: 0.854))
                                     VStack{
-                                        Text("\(trip.name)").foregroundColor(.black).font(.title)
+                                        Text("\(trip.name)").foregroundColor(.white).font(.title)
                                         if Date.now <= trip.startDate {
 
-                                            Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.black).font(.caption)
+                                            Text("\(format(trip: trip).replacingOccurrences(of: "d", with: "")) days until trip").foregroundColor(.white).font(.caption)
                                         }
                                     }
                                 }
@@ -96,7 +97,7 @@ struct HomepageView: View {
                         
                         if activateHiddenView {
                             NavigationLink(isActive: $activateHiddenView){
-                                Tabs(trip: trip!)
+                                Tabs(trip: trip!, dayID: dayID!)
                                 //TripView(trip: trip!, dayID: dayID!)
                             } label: {
                                 EmptyView()

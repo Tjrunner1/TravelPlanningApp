@@ -23,8 +23,11 @@ struct CalendarView: View {
                             self.day = day
                         } label: {
                             ZStack{
-                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+                               // Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.572, saturation: 0.635, brightness: 0.672).opacity(0.6) : Color(hue: 0.572, saturation: 0.635, brightness: 0.672))
+                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.084, saturation: 0.12, brightness: 0.854).opacity(0.6): Color(hue: 0.084, saturation: 0.12, brightness: 0.854))
                                     .cornerRadius(10)
+                                    //.foregroundColor(Color(hue: 0.139, saturation: 0.186, brightness: 0.893))
+                                   // .foregroundColor(Color(hue: 0.147, saturation: 0.294, brightness: 0.835))
                                 Text(applyDateFormat(date: day.date)).foregroundColor(.white)
                             }.frame(width: width/CGFloat((numberOfItemsPerRow + 2)), height: height/12)
                         }

@@ -20,10 +20,10 @@ struct DayView: View {
                     ActivityView(day: day, activity: activity)
                 } label: {
                     ZStack{
-                        ContainerView(color: Color(hue: 1.0, saturation: 0.0, brightness: 0.896))
+                        ContainerView(color: Color(hue: 0.237, saturation: 0.077, brightness: 0.755))
                         VStack{
-                            Text("\(activity.title)").foregroundColor(.black).font(.title).frame(alignment: .leading)
-                            Text("\(activity.startTime.formatted(date: .omitted, time: .shortened)) - \(activity.endTime.formatted(date: .omitted, time: .shortened))").foregroundColor(.black).font(.subheadline)
+                            Text("\(activity.title)").foregroundColor(.white).font(.title).frame(alignment: .leading)
+                            Text("\(activity.startTime.formatted(date: .omitted, time: .shortened)) - \(activity.endTime.formatted(date: .omitted, time: .shortened))").foregroundColor(.white).font(.subheadline)
                         }
                     }
                 }

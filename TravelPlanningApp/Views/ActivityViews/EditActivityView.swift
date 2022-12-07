@@ -33,9 +33,15 @@ struct EditActivityView: View {
         ScrollView{
             VStack(alignment: .leading, spacing: height/50){
                 //TITLE
+                if (activity.title == "") {
+                    TextField("Activity Title", text: $title)
+                        .font(.title)
+                        .padding(.horizontal)
+                }else{
                 TextField(activity.title, text: $title)
                     .font(.title)
                     .padding(.horizontal)
+                }
                 
                 //STARTTIME
                 DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
