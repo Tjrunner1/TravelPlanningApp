@@ -84,8 +84,15 @@ class TripsViewModel: ObservableObject {
     
     func deleteTrip(trip: Trip) {
         for i in 0 ..< trips.count {
-            print(i)
             if trips[i].id == trip.id {
+                //Remove images from file storage related to this trip
+                for j in 0 ..< trips[i].days.count {
+                    for k in 0 ..< trips[i].days[j].activities.count {
+                        deleteImagesFromFilePath(activity: trips[i].days[j].activities[k])
+                    }
+                }
+                
+                //Remove the trip
                 trips.remove(at: i)
                 break
             }
@@ -108,15 +115,20 @@ class TripsViewModel: ObservableObject {
         //orders based on start time
         day.activities.sort{$0.startTime < $1.startTime}
         
+        //Add images to file path
+        addImagesToFilePath(activity: activity)
+        
         //save the info to json
         writeToJSONFile()
-        addImagesToFilePath(activity: activity)
     }
     
     func editActivity(day: Day, activity: Activity, title: String, startTime: Date, endTime: Date, description: String?, url: String?, address: String?, attachments: [UIImage]?) {
         //Get percise date
         let startTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: startTime))!
         let endTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endTime))!
+        
+        //remove images from file path
+        deleteImagesFromFilePath(activity: activity)
         
         //update data
         activity.title = title
@@ -130,9 +142,11 @@ class TripsViewModel: ObservableObject {
         //orders based on start time
         day.activities.sort{$0.startTime < $1.startTime}
         
+        //Add images to file path
+        addImagesToFilePath(activity: activity)
+        
         //save the info to json
         writeToJSONFile()
-        addImagesToFilePath(activity: activity)
     }
     
     func deleteActivity(activity: Activity) {
@@ -140,6 +154,7 @@ class TripsViewModel: ObservableObject {
             for j in 0 ..< trips[i].days.count {
                 for k in 0 ..< trips[i].days[j].activities.count {
                     if trips[i].days[j].activities[k].id == activity.id {
+                        deleteImagesFromFilePath(activity: trips[i].days[j].activities[k])
                         trips[i].days[j].activities.remove(at: k)
                         break
                     }
@@ -245,14 +260,30 @@ class TripsViewModel: ObservableObject {
     }
     
     func addImagesToFilePath(activity: Activity) {
+        DispatchQueue.main.async {
+            do {
+                if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    for i in 0 ..< (activity.attachments?.count ?? 0) {
+                        if let data = activity.attachments![i].pngData() {
+                            let url = documentDirectory.appendingPathComponent("\(activity.id)_\(i).png")
+                            
+                            try data.write(to: url)
+                        }
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func deleteImagesFromFilePath(activity: Activity) {
         do {
             if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 for i in 0 ..< (activity.attachments?.count ?? 0) {
-                    if let data = activity.attachments![i].pngData() {
-                        let url = documentDirectory.appendingPathComponent("\(activity.id)_\(i).png")
-                        
-                        try data.write(to: url)
-                    }
+                    let url = documentDirectory.appendingPathComponent("\(activity.id)_\(i).png")
+                    
+                    try FileManager.default.removeItem(at: url)
                 }
             }
         } catch {
