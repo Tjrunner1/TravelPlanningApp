@@ -37,7 +37,7 @@ struct CreateActivityView: View {
                     Text("Event Title:                 ")
                     TextField("", text: $title)
                         .textFieldStyle(.roundedBorder)
-                        .border(.gray)
+                        .border(.gray, width: 0.5)
                 }.frame(width: width/1.3, alignment: .center)
                 
                     DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
@@ -47,20 +47,20 @@ struct CreateActivityView: View {
                 VStack(alignment: .leading, spacing: 0){
                     Text("Notes:                       ")
                     TextEditor(text: $description)
-                        .border(.gray)
+                        .border(.gray, width: 0.5)
                         .frame(height: height/6)
                 }.frame(width: width/1.3, alignment: .center)
                 VStack(alignment:.leading, spacing: 0){
                     Text("URL:                       ")
                     TextField("https://www.google.com",text: $url)
                         .textFieldStyle(.roundedBorder)
-                        .border(.gray)
+                        .border(.gray, width: 0.5)
                 }.frame(width: width/1.3, alignment: .center)
                 VStack(alignment:.leading, spacing: 0){
                     Text("Address:                       ")
                     TextField("Copy Maps Address Here",text: $address)
                         .textFieldStyle(.roundedBorder)
-                        .border(.gray)
+                        .border(.gray, width: 0.5)
                 }.frame(width: width/1.3, alignment: .center)
                     .padding(.bottom)
                 
@@ -94,7 +94,7 @@ struct CreateActivityView: View {
                                     .font(.callout)
                             }
                             .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
-                            .border(.gray)
+                            .border(.gray, width: 0.5)
                         }
                     }
                 }

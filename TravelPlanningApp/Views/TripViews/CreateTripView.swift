@@ -16,6 +16,7 @@ struct CreateTripView: View {
     @State private var endDate = Date()
     
     var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
     
     var body: some View {
         if (trip == nil) {
@@ -31,7 +32,7 @@ struct CreateTripView: View {
                     .frame(width: width/1.3, alignment: .leading)
                 DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                     .frame(width: width/1.3, alignment: .leading)
-                Spacer(minLength: 2)
+                //Spacer()
                 Button {
                     if endDate < startDate {
                         endDate = startDate
@@ -39,8 +40,12 @@ struct CreateTripView: View {
                     
                     self.trip = TVM.createTrip(name: tripName, startDate: startDate, endDate: endDate)
                 } label: {
-                    Text("Create Trip")
-                    Image(systemName: "plus.circle").font(.title)
+                    ZStack{
+                        Rectangle().fill(Color(hue: 0.572, saturation: 0.792, brightness: 0.594)).cornerRadius(12).padding()
+                            .frame(height: height/10)
+                        Text("Create Trip")
+                            .foregroundColor(.white)
+                    }
                 }
                 Spacer()
             }

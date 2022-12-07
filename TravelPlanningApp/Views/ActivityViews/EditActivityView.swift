@@ -30,76 +30,101 @@ struct EditActivityView: View {
 
     
     var body: some View {
-        VStack(alignment: .leading){
-            //TITLE
-            TextField(activity.title, text: $title)
-                .font(.title)
-                .padding()
-            
-            //STARTTIME
-            DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
-                .frame(width: 250, alignment: .leading)
-                .padding()
-            //ENDTIME
-            DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
-                .frame(width: 250, alignment: .center)
-                .padding()
-            //DESCRIPTION
-           
-            Text("Notes:").padding()
-            TextField(description, text: $description)
-            
-            //URL
-            TextField(url, text: $url)
-            
-            //ADDRESS
-            TextField(address, text: $address)
-            
-            //IMAGES
+        ScrollView{
+            VStack(alignment: .leading, spacing: height/50){
+                //TITLE
+                TextField(activity.title, text: $title)
+                    .font(.title)
+                    .padding(.horizontal)
                 
-                Group{
-                    HStack(alignment: .center){
-                        ForEach(attachments.indices, id: \.self) { i in
-                            Button{
-                                self.imageIndex = i
-                                self.isShowAttachment = true
-                            } label: {
-                                Image(uiImage: attachments[i])
-                                    .resizable()
-                                    .cornerRadius(5)
-                                    .aspectRatio(contentMode: .fit)
-                            } .padding()
-                        }
-                    }.frame(width: width)
+                //STARTTIME
+                DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
+                    .frame(width: 250, alignment: .leading)
+                    .padding(.horizontal)
+                //ENDTIME
+                DatePicker("End Time:", selection: $endTime, in: startTime... , displayedComponents: [.hourAndMinute])
+                    .frame(width: 250, alignment: .center)
+                    .padding(.horizontal)
+                //DESCRIPTION
+                VStack(alignment: .leading, spacing: 0){
+                    Text("Notes:                       ")
+                    TextEditor(text: $description)
+                        .border(.gray, width: 0.5)
+                        .frame(height: height/6)
+                }.frame(width: width/1.3, alignment: .center)
+                    .padding(.horizontal)
+                   
+                //URL
+                VStack(alignment:.leading, spacing: 0){
+                    Text("URL:                       ")
+                    TextField("https://www.google.com",text: $url)
+                        .textFieldStyle(.roundedBorder)
+                        .border(.gray, width: 0.5)
+                }.frame(width: width/1.3, alignment: .center)
+                    .padding(.horizontal)
                     
-                    Button{
-                        self.isShowPhotoLibrary = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "photo")
-                                .font(.system(size: 20))
-                                
-                            Text("Photo library")
-                                .font(.callout)
-                        }
-                        .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
-                        .border(.gray)
+                
+                //ADDRESS
+                VStack(alignment:.leading, spacing: 0){
+                    Text("Address:                       ")
+                    TextField("Copy Maps Address Here",text: $address)
+                        .textFieldStyle(.roundedBorder)
+                        .border(.gray, width: 0.5)
+                }.frame(width: width/1.3, alignment: .center)
+                    .padding(.horizontal)
+                
+                //IMAGES
+                Text("Photos:").padding(.horizontal)
+                    Group{
+                        HStack(alignment: .center){
+                            ForEach(attachments.indices, id: \.self) { i in
+                                Button{
+                                    self.imageIndex = i
+                                    self.isShowAttachment = true
+                                } label: {
+                                    Image(uiImage: attachments[i])
+                                        .resizable()
+                                        .cornerRadius(5)
+                                        .aspectRatio(contentMode: .fit)
+                                } .padding(.horizontal)
+                            }
+                        }.frame(width: width)
+                        
+                        Button{
+                            self.isShowPhotoLibrary = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "photo")
+                                    .font(.system(size: 20))
+                                    .padding(.leading)
+                                    
+                                Text("Photo library")
+                                    .font(.callout)
+                                    .padding()
+                            }
+                           // .frame(minWidth: width/1.3, minHeight: 30, maxHeight: 50)
+                            .border(.gray, width: 0.5)
+                        }.frame(width: width, alignment: .center)
+                    }
+             
+                Button{
+                    TVM.editActivity(day: day, activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: attachments)
+                    
+                    dismiss()
+                } label: {
+                    ZStack{
+                        Rectangle().fill(Color(hue: 0.361, saturation: 0.15, brightness: 0.71)).cornerRadius(12).padding()
+                            .frame(height: height/10)
+                        Text("Update Activity")
+                            .foregroundColor(.white)
                     }
                 }
-         
-            Button{
-                TVM.editActivity(day: day, activity: activity, title: title, startTime: startTime, endTime: endTime, description: description, url: url, address: address, attachments: attachments)
-                
-                dismiss()
-            } label: {
-                Text("Update Activity")
+            }.sheet(isPresented: $isShowPhotoLibrary) {
+                ImagePicker(sourceType: .photoLibrary, images: $attachments)
+            }.sheet(isPresented: $isShowAttachment) {
+                EditAttachmentView(images: $attachments, isShowAttachment: $isShowAttachment, index: imageIndex)
             }
-        }.sheet(isPresented: $isShowPhotoLibrary) {
-            ImagePicker(sourceType: .photoLibrary, images: $attachments)
-        }.sheet(isPresented: $isShowAttachment) {
-            EditAttachmentView(images: $attachments, isShowAttachment: $isShowAttachment, index: imageIndex)
         }
-        
     }
 }
 

@@ -68,6 +68,7 @@ struct HomepageView: View {
         NavigationView{
             ZStack{
                 ScrollView{
+
                     VStack{
                         ForEach(TVM.trips) { trip in
 //<<<<<<< Updated upstream
