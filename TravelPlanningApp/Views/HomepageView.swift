@@ -23,11 +23,9 @@ class TimeMgr: ObservableObject {
     }
 }
 
-func format(trip: Trip)->String{
-    let TI = Date.now.distance(to: trip.startDate)
-    
-    //let TI = Date.now.distance(to: Date.init(timeIntervalSinceReferenceDate: TimeInterval(trip.startDate)))
-    
+func format(trip: Trip) -> String{
+    let TI = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date.now))!.distance(to: trip.startDate)
+
     let formatter = DateComponentsFormatter()
     formatter.allowedUnits = [.day]
     formatter.unitsStyle = .positional
@@ -45,7 +43,7 @@ struct HomepageView: View {
     @ObservedObject var TM = TimeMgr()
     
     init() {
-        let currentDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month,. day], from: Date.now))!
+        let currentDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date.now))!
         for trip in TVM.trips {
             if (trip.startDate <= currentDate && currentDate <= trip.endDate) {
                 self.trip = trip

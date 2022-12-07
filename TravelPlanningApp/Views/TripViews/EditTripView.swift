@@ -75,7 +75,7 @@ struct EditTripView: View {
                 print("im here")
                 
                 
-                //There is no good way to do this, without updating to a newer version of Xcode
+                //There is no longer a good way to do this, without updating to a newer version of Xcode
                 guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
                 navigationController.popToRootViewController(animated: true)
             } label: {

@@ -12,8 +12,6 @@ struct Tabs: View {
     var dayID: Int = 0
 
     var body: some View {
-
-        
         TabView{
             TripView(trip: trip, dayID: dayID)
                 .tabItem{
@@ -33,9 +31,3 @@ struct Tabs: View {
         }}
     }
 }
-
-//struct Tabs_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Tabs()
-//    }
-//}
