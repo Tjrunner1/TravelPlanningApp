@@ -16,6 +16,7 @@ struct ListView: View {
 
     var body: some View {
         VStack{
+            Text("Packing List").font(.title)
             TextView(text: $trip.list)
                 .padding(10)
                 .border(Color.primary, width: 0.5)
@@ -24,9 +25,10 @@ struct ListView: View {
                 TVM.updateList(trip: trip, list: trip.list)
             } label: {
                 ZStack{
-                    Rectangle().frame(width: width/2, height: height/10).cornerRadius(10)
-                        .foregroundColor(Color(hue: 0.572, saturation: 0.5, brightness: 0.7))
-                    Text("Save").foregroundColor(.white).font(.system(.title2, design: .rounded))
+                    Rectangle().fill(Color(hue: 0.361, saturation: 0.15, brightness: 0.71)).cornerRadius(12).padding()
+                        .frame(height: height/10)
+                    Text("Save")
+                        .foregroundColor(.white)
                 }.padding()
             }
         }

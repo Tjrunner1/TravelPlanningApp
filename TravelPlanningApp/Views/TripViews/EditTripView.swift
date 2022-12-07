@@ -12,6 +12,8 @@ struct EditTripView: View {
     
     @Environment(\.dismiss) private var dismiss
     var width = UIScreen.main.bounds.width
+    var height = UIScreen.main.bounds.height
+
 
     @EnvironmentObject var TVM: TripsViewModel
     @ObservedObject var trip: Trip
@@ -20,32 +22,71 @@ struct EditTripView: View {
     @State var startDate: Date
     @State var endDate: Date
     
+    
     var body: some View {
         
-        VStack{
-            TextField(trip.name, text: $name).frame(width: width/4, alignment: .center).font(.system(.title, design: .rounded))
+        VStack(alignment: .center){
+            HStack{
+                TextField(trip.name, text: $name)
+                    .frame(alignment: .leading)
+                    //.frame(width: width/4, alignment: .center)
+                    .font(.system(.title, design: .rounded))
+                    .padding(.horizontal)
+            }
+            
+            Divider()
+            
             DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
             
             DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                 .frame(width: width/1.3, alignment: .leading)
-              
+            Button{
+                TVM.editTrip(trip: trip, name: name, startDate: startDate, endDate: endDate)
+                dismiss()
+            } label: {
+                ZStack{
+                    Rectangle().fill(Color(hue: 0.361, saturation: 0.15, brightness: 0.71)).cornerRadius(12).padding()
+                        .frame(height: height/10)
+                    Text("Update Trip")
+                        .foregroundColor(.white)
+                }
+            }
+              Spacer()
+//            Button{
+//                TVM.deleteTrip(trip: trip)
+//
+//                //There is no good way to do this, without updating to a newer version of Xcode
+//                guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+//                navigationController.popToRootViewController(animated: true)
+//            } label: {
+//                ZStack{
+//                    Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
+//                        .frame(height: height/10)
+//                    Text("Delete  the Trip")
+//                        .foregroundColor(.white)
+//                }
+//            }
+          
+           
+        }.toolbar{ToolbarItem{
             Button{
                 TVM.deleteTrip(trip: trip)
+                print("im here")
+                
                 
                 //There is no good way to do this, without updating to a newer version of Xcode
                 guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
                 navigationController.popToRootViewController(animated: true)
             } label: {
-                Text("Delete the Trip")
-            }
-            Button{
-                TVM.editTrip(trip: trip, name: name, startDate: startDate, endDate: endDate)
-                dismiss()
-            } label: {
-                Text("Update Trip")
-            }
-            Spacer()
+                Image(systemName: "trash")
+//                ZStack{
+//                    Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
+//                        .frame(height: height/10)
+//                    Text("Delete  the Trip")
+//                        .foregroundColor(.white)
+//                }
+            }}
         }
     }
 }

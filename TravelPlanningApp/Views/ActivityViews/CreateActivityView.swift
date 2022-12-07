@@ -103,14 +103,13 @@ struct CreateActivityView: View {
                     
                     dismiss()
                 } label:{
+                    
                     ZStack{
-                        Rectangle().fill(Color(hue: 0.294, saturation: 0.31, brightness: 0.661))
-                            .cornerRadius(12)
-                        Text("Create activity")
+                        Rectangle().fill(Color(hue: 0.572, saturation: 0.792, brightness: 0.594)).cornerRadius(12).padding()
+                            .frame(height: height/10)
+                        Text("Create Activity")
                             .foregroundColor(.white)
-                            .padding()
-                            
-                    }.padding()
+                    }
                     
                 }.padding()
             }
