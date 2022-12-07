@@ -21,12 +21,6 @@ struct EditTripView: View {
     @State var endDate: Date
     
     var body: some View {
-        //DELETE !!!!!!!!!!!!!!!!!!
-        TextView(text: $name)
-            .padding(10)
-            .border(Color.primary, width: 0.5)
-            .padding()
-            .navigationTitle("Edit your biography")
         
         VStack{
             TextField(trip.name, text: $name).frame(width: width/4, alignment: .center).font(.system(.title, design: .rounded))

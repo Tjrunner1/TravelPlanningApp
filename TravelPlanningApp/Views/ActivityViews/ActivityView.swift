@@ -72,8 +72,8 @@ struct ActivityView: View {
                 TVM.deleteActivity(activity: activity)
             }, label:{
                 ZStack{
-                    Rectangle().fill(Color(hue: 1, saturation: 0.37, brightness: 0.85)).cornerRadius(12).padding()
-                        .frame(height: height/6)
+                    Rectangle().fill(Color(hue: 1, saturation: 0.47, brightness: 0.85)).cornerRadius(12).padding()
+                        .frame(height: height/7)
                     Text("Delete Activity")
                         .foregroundColor(.white)
                 }

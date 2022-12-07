@@ -13,17 +13,19 @@ class Trip: Decodable, Identifiable, ObservableObject {
     @Published var startDate: Date
     @Published var endDate: Date
     @Published var days: [Day]
+    @Published var list: String = ""
     
     
-    init(id: Int, name: String, startDate: Date, endDate: Date, days: [Day]) {
+    init(id: Int, name: String, startDate: Date, endDate: Date, days: [Day], list:String?) {
         self.id = id
         self.name = name
         self.startDate = startDate
         self.endDate = endDate
         self.days = days
+        self.list = list ?? ""
     }
     
-    private enum CodingKeys : String, CodingKey { case id, name, startDate, endDate, days }
+    private enum CodingKeys : String, CodingKey { case id, name, startDate, endDate, days, list }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -32,5 +34,6 @@ class Trip: Decodable, Identifiable, ObservableObject {
         self.startDate = Date(timeIntervalSinceReferenceDate: try container.decode(Double.self, forKey: .startDate))
         self.endDate = Date(timeIntervalSinceReferenceDate: try container.decode(Double.self, forKey: .endDate))
         self.days = try container.decode([Day].self, forKey: .days)
+        self.list = try container.decode(String.self, forKey: .list)
     }
 }

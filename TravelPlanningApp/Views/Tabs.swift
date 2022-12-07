@@ -18,7 +18,7 @@ struct Tabs: View {
                 .tabItem{
                     Label("Calendar", systemImage: "calendar")
                 }
-            ListView()
+            ListView(trip: trip)
                 .tabItem{
                     Label("Packing List", systemImage: "note")
                 }

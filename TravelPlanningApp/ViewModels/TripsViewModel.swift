@@ -29,9 +29,11 @@ class TripsViewModel: ObservableObject {
             let day = Day(id: i, date: Calendar.current.date(byAdding: .day, value: i, to: startDate)!, activities: [Activity]())
             days.append(day)
         }
+        
+        let list = ""
 
         //Create the trip
-        let newTrip = Trip(id: tripIDCounter, name: name, startDate: startDate, endDate: endDate, days: days)
+        let newTrip = Trip(id: tripIDCounter, name: name, startDate: startDate, endDate: endDate, days: days, list: list)
         trips.append(newTrip)
         tripIDCounter += 1
 
@@ -42,6 +44,11 @@ class TripsViewModel: ObservableObject {
         writeToJSONFile()
         
         return newTrip
+    }
+    
+    func updateList(trip: Trip, list: String){
+        trip.list = list
+        writeToJSONFile()
     }
     
     func editTrip(trip: Trip, name: String, startDate: Date, endDate: Date) {
@@ -183,6 +190,7 @@ class TripsViewModel: ObservableObject {
             tripDict["name"] = NSString(utf8String: trip.name)
             tripDict["startDate"] = NSNumber(value: trip.startDate.timeIntervalSinceReferenceDate)
             tripDict["endDate"] = NSNumber(value: trip.endDate.timeIntervalSinceReferenceDate)
+            tripDict["list"] = NSString(utf8String: trip.list)
             var days: [AnyObject] = []
             for day in trip.days {
                 var dayDict: [String: AnyObject] = [:]
