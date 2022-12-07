@@ -32,7 +32,6 @@ struct CreateTripView: View {
                     .frame(width: width/1.3, alignment: .leading)
                 DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: [.date])
                     .frame(width: width/1.3, alignment: .leading)
-                //Spacer()
                 Button {
                     if endDate < startDate {
                         endDate = startDate
@@ -50,7 +49,6 @@ struct CreateTripView: View {
                 Spacer()
             }
         } else {
-            //TripView(trip: trip!)
             Tabs(trip: trip!)
         }
     }
