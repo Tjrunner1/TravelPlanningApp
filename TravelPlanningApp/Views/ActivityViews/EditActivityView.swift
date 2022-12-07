@@ -32,19 +32,25 @@ struct EditActivityView: View {
     var body: some View {
         ScrollView{
             VStack(alignment: .leading, spacing: height/50){
-                //TITLE
-                if (activity.title == "") {
-                    TextField("activity.title", text: $title)
+                HStack{
+                    //Text("Title:")
+                     //  .padding(.horizontal)
+                    //TITLE
+                    if (activity.title == "") {
+                        TextField("Activity Title", text: $title)
+                            .font(.title)
+                            .padding(.horizontal)
+                            .border(.gray, width: 0.5)
+                    }else{
+                    TextField(activity.title, text: $title)
                         .font(.title)
                         .padding(.horizontal)
-                }else{
-                TextField(activity.title, text: $title)
-                    .font(.title)
-                    .padding(.horizontal)
+                    }
                 }
+                Divider()
                 
                 //STARTTIME
-                DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
+                DatePicker("Start Time:", selection: $startTime, displayedComponents: [.hourAndMinute])
                     .frame(width: 250, alignment: .leading)
                     .padding(.horizontal)
                 //ENDTIME
