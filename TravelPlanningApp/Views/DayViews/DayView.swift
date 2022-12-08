@@ -21,7 +21,6 @@ struct DayView: View {
                 } label: {
                     ZStack{
                         ContainerView(color: Color(hue: 0.084, saturation: 0.120, brightness: 0.821))
-                       // ContainerView(color: Color(hue: 0.261, saturation: 0.075, brightness: 0.71))
                         VStack{
                             Text("\(activity.title)").foregroundColor(.white).font(.title).frame(alignment: .leading)
                             Text("\(activity.startTime.formatted(date: .omitted, time: .shortened)) - \(activity.endTime.formatted(date: .omitted, time: .shortened))").foregroundColor(.white).font(.subheadline)
