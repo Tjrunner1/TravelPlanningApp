@@ -68,7 +68,6 @@ struct EditActivityView: View {
                 VStack(alignment:.leading, spacing: 0){
                     Text("URL:                       ")
                     TextField("https://www.google.com",text: $url)
-                        .textFieldStyle(.roundedBorder)
                         .border(.gray, width: 0.5)
                 }.frame(width: width/1.3, alignment: .center)
                     .padding(.horizontal)
@@ -78,7 +77,6 @@ struct EditActivityView: View {
                 VStack(alignment:.leading, spacing: 0){
                     Text("Address:                       ")
                     TextField("Copy Maps Address Here",text: $address)
-                        .textFieldStyle(.roundedBorder)
                         .border(.gray, width: 0.5)
                 }.frame(width: width/1.3, alignment: .center)
                     .padding(.horizontal)

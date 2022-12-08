@@ -23,7 +23,9 @@ struct CalendarView: View {
                             self.day = day
                         } label: {
                             ZStack{
-                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.084, saturation: 0.132, brightness: 0.821).opacity(0.6): Color(hue: 0.084, saturation: 0.132, brightness: 0.821))
+                                Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.261, saturation: 0.075, brightness: 0.71).opacity(0.6): Color(hue: 0.261, saturation: 0.075, brightness: 0.71))
+                                    .cornerRadius(10)
+                                //Rectangle().foregroundColor(self.day.id == day.id ? Color(hue: 0.084, saturation: 0.132, brightness: 0.821).opacity(0.6): Color(hue: 0.084, saturation: 0.132, brightness: 0.821))
                                     .cornerRadius(10)
                                 Text(applyDateFormat(date: day.date)).foregroundColor(.white)
                             }.frame(width: width/CGFloat((numberOfItemsPerRow + 2)), height: height/12)
@@ -31,7 +33,6 @@ struct CalendarView: View {
                     }
                 }
             }
-
             Divider()
             DayView(day: self.day)
         }

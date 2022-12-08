@@ -87,7 +87,7 @@ struct HomepageView: View {
                         NavigationLink{
                             CreateTripView()
                         } label: {
-                            AddButtonView(color: Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
+                            AddButtonView(color: .white)
                         }.frame(width: width)
                         
                         if activateHiddenView {

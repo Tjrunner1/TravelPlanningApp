@@ -20,7 +20,8 @@ struct DayView: View {
                     ActivityView(day: day, activity: activity)
                 } label: {
                     ZStack{
-                        ContainerView(color: Color(hue: 0.237, saturation: 0.077, brightness: 0.755))
+                        ContainerView(color: Color(hue: 0.084, saturation: 0.120, brightness: 0.821))
+                       // ContainerView(color: Color(hue: 0.261, saturation: 0.075, brightness: 0.71))
                         VStack{
                             Text("\(activity.title)").foregroundColor(.white).font(.title).frame(alignment: .leading)
                             Text("\(activity.startTime.formatted(date: .omitted, time: .shortened)) - \(activity.endTime.formatted(date: .omitted, time: .shortened))").foregroundColor(.white).font(.subheadline)
@@ -32,9 +33,9 @@ struct DayView: View {
                 CreateActivityView(day: day)
             } label: {
                 VStack{
-                    AddButtonView(color: Color(hue: 0.572, saturation: 0.792, brightness: 0.594))
+                    AddButtonView(color: Color(hue: 0.572, saturation: 0.137, brightness: 0.679))
                     Text("Add Activity").font(.system(.headline, design: .rounded))
-                        .foregroundColor((Color(hue: 0.572, saturation: 0.792, brightness: 0.594)))
+                        .foregroundColor((Color(hue: 0.572, saturation: 0.137, brightness: 0.679)))
                 }
             }
         }
