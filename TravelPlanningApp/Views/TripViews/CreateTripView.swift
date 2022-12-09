@@ -40,7 +40,7 @@ struct CreateTripView: View {
                     self.trip = TVM.createTrip(name: tripName, startDate: startDate, endDate: endDate)
                 } label: {
                     ZStack{
-                        Rectangle().fill(Color(hue: 0.572, saturation: 0.792, brightness: 0.594)).cornerRadius(12).padding()
+                        Rectangle().fill(Color(hue: 0.572, saturation: 0.361, brightness: 0.753)).cornerRadius(12).padding()
                             .frame(height: height/10)
                         Text("Create Trip")
                             .foregroundColor(.white)
